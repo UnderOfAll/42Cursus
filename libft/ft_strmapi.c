@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 16:52:56 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/04 13:48:55 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/10 17:32:33 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/11 17:28:58 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*substr;
+	char	*string;
 	size_t	i;
 
-	i = -1;
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	string = (char *)s;
+	i = -1;
+	string = malloc(sizeof(char) * ft_strlen(string));
+	if (!string)
 		return (NULL);
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	while (s[start + ++i] && i < len)
-		substr[i] = s[start + i];
-	substr[i] = '\0';
-	return (substr);
+	while (s[++i])
+		string[i] = f(i, s[i]);
+	string[i] = '\0';
+	return (string);
 }
 
-/*int main()
+/*static char	f_tolower(unsigned int i, char a)
 {
-	char const *s = "jorge";
-	printf("%s", ft_substr(s, 0, 10));
+	i = 32;
+	if (a > 64 && a < 91)
+		a += i;
+	return (a);
+}
+
+int	main(void)
+{
+	char *s = "JORGE";
+	char *buffer = ft_strmapi(s, f_tolower);
+		printf("%s", buffer);
+		free (buffer);
 }*/

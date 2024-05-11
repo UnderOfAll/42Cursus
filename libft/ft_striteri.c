@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 16:13:14 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/04 16:16:02 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/11 17:04:16 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/11 19:59:19 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int	i;
-	int	res;
-	int	sign;
+	unsigned int	i;
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	if (str[i] <= 32)
-		i++;
-	if (str[i] == '-')
-		sign -= 1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res *= 10 + str[i] - '0';
-		i++;
-	}
-	return (res * sign);
+	if (!s || !f)
+		return ;
+	i = -1;
+	while (s[++i])
+		f(i, &s[i]);
 }
+
+/*static void	f_tolower(unsigned int i, char *a)
+{
+	(void)i;
+	if (*a > 64 && *a < 91)
+		*a += 32;
+}
+
+int	main(void)
+{
+	char s[] = "JORGE";
+	ft_striteri(s, f_tolower);
+	printf("%s", s);
+}*/

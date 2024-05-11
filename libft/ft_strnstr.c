@@ -6,13 +6,13 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:05:57 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/13 17:33:06 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:30:32 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strnstr(char *big, char *little, size_t len)
+char	*ft_strnstr(char *big, char *little, size_t len)
 {
 	size_t	i;
 	size_t	j;

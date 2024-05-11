@@ -6,31 +6,52 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:57:41 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 19:36:32 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:36:07 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	idest;
+	size_t	sizedest;
 
-	idest = ft_strlen(dest);
+	sizedest = ft_strlen(dest);
 	i = -1;
-	if (size == 0 || size < idest)
+	if (size == 0 || size < sizedest)
 		return (ft_strlen(src) + size);
-	while (src[++i] && i < size - idest - 1)
-		dest[i + idest] = src[i];
-	dest[i + idest] = '\0';
-	return (ft_strlen(src) + idest);
+	while (src[++i] && i < size - sizedest - 1)
+		dest[i + sizedest] = src[i];
+	dest[i + sizedest] = '\0';
+	return (ft_strlen(src) + sizedest);
+}
+size_t strlcat(char * restrict dst, const char * restrict src, size_t maxlen) {
+    const size_t srclen = strlen(src);
+    const size_t dstlen = strnlen(dst, maxlen);
+    if (dstlen == maxlen) return maxlen+srclen;
+    if (srclen < maxlen-dstlen) {
+        memcpy(dst+dstlen, src, srclen+1);
+    } else {
+        memcpy(dst+dstlen, src, maxlen-dstlen-1);
+        dst[maxlen-1] = '\0';
+    }
+    return dstlen + srclen;
 }
 
-void	ft_print_result(int n)
+int main()
+{
+	const char src[] = "jorge";
+	char	dest[10];
+	printf("%s\n", dest);
+	printf("%s\n", src);
+	printf("ft function:%zu\n", ft_strlcat(dest, src, 10));
+	printf("%s\n", dest);
+	printf("Original function:%zu", strlcat(dest, src, 10));
+}
+
+/*void	ft_print_result(int n)
 {
 	char c;
 
@@ -114,4 +135,4 @@ int		main(int argc, const char *argv[])
 		write(1, dest, 15);
 	}
 	return (0);
-}
+}*/

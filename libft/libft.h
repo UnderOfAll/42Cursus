@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:47:15 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 15:29:50 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:31:31 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*strnstr(char *big, char *little, size_t len);
+char	*ft_strnstr(char *big, char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 int		ft_tolower(int a);
 int		ft_toupper(int a);

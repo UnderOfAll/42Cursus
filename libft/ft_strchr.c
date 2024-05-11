@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:53:54 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 11:39:39 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:53:14 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
+	char	*str;
 
+	str = (char *)s;
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		if (str[i] == (char)c)
+			return (&str[i]);
 		i++;
 	}
 	return (NULL);
@@ -29,5 +31,5 @@ char	*ft_strchr(const char *s, int c)
 /*int main()
 {
 	char buffer[] = "jorge";
-	printf("%s", ft_strchr(buffer, 'r'));
+	printf("%s\n", ft_strchr(buffer, 'r'));
 }*/
