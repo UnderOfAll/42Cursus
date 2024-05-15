@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 10:20:55 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 18:16:33 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/13 20:11:24 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/15 16:18:26 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	int contador;
 
-	ptr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	contador = 1;
+	if (n == -2147483648)
 	{
-		ptr[i] = '\0';
-		i++;
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	while (contador <= n / 10)
+		contador *= 10;
+	while (contador > 0)
+	{
+		ft_putchar_fd(n / contador + '0', fd);
+		n %= contador;
+		contador /= 10;
 	}
 }
+
 /*int main()
 {
-	char buffer[]= "asdas";
-	ft_bzero((char *)buffer, 5);
+	ft_putnbr_fd(-2147483648, 0);
 }*/

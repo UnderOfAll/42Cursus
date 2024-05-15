@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 12:13:30 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/14 12:21:17 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/13 20:02:30 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/15 16:40:31 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (s[i] >= 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i--;
-	}
-	return (NULL);
+	i = -1;
+	while (s[i])
+		write(fd, &s[i], 1);
+	write(1, "\n", 1);
 }
-
-/*int main()
-{
-	char buffer[] = "jorge";
-	printf("%s", ft_strrchr(buffer, 'r'));
-}*/
