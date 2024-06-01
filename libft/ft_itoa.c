@@ -6,52 +6,39 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:34:15 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/10 17:32:22 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:09:38 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	ft_putnbr(long nb, char *str, int len)
-{
-	int	contador;
-
-	contador = 1;
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = -nb;
-	}
-	while (contador <= nb / 10)
-	{
-		contador *= 10;
-	}
-	while (contador > 0)
-	{
-		str[len] = (nb / contador + '0');
-		nb %= contador;
-		contador /= 10;
-		len++;
-	}
-}
+#include <limits.h>
 
 char	*ft_itoa(int n)
 {
-	char string[15];
-	int len;
+	char	string[12];
+	long	nb;
+	int		len;
 
-	len = ft_strlen(string);
+	nb = n;
+	len = 11;
 	string[len] = '\0';
-	len = 1;
-	if (n == 0)
-		return ("0\0");
-	ft_putnbr(n, string, len);
-	return (ft_strdup(string));
+	if (nb == 0)
+		return (ft_strdup("0"));
+	if (nb < 0)
+		nb = -nb;
+	while (nb > 0)
+	{
+		string[--len] = (nb % 10 + '0');
+		nb /= 10;
+	}
+	if (n < 0)
+		string[--len] = '-';
+	return (ft_strdup(&string[len]));
 }
 
-/*int main()
+/* int main()
 {
-	char *penis = ft_itoa(-2147483648);
-	printf("%s", penis);
-	free (penis);
-}*/
+	char *jorge = ft_itoa(-2147483648);
+	printf("%s\n", jorge);
+	free (jorge);
+} */

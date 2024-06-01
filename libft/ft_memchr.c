@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 12:21:37 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 11:39:24 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:05:31 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,31 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
-	size_t			i;
+	const unsigned char	*str;
+	size_t				i;
 
-	str = (unsigned char *)s;
+	str = s;
 	i = 0;
-	while (str[i] && i < n)
+	while (i < n)
 	{
 		if (str[i] == (unsigned char)c)
-			return (&str[i]);
+			return ((void *)&str[i]);
 		i++;
 	}
 	return (NULL);
 }
 
-/*int main()
+/*int	main(void)
 {
-	char buffer[] = "jorge";
-	printf("%s", (char *)memchr(buffer, 'r', 5));
-	printf("%s", (char *)ft_memchr(buffer, 'r', 5));
+	char buffer[] = "0, 1, 2, 3, 4, 5";
+	unsigned char *standard = memchr(buffer, 2 + 256, 10000);
+	unsigned char *function = ft_memchr(buffer, 2 + 256, 10000);
+	if (function != NULL)
+		printf("function: %c\n", *function);
+	else
+		printf("NO\n");
+	if (standard != NULL)
+		printf("standard: %c", *standard);
+	else
+		printf("NO\n");
 }*/

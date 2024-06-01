@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 12:13:30 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/14 12:21:17 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:17:23 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (s[i] >= 0)
+	i = ft_strlen(s);
+	while (i > 0)
 	{
 		if (s[i] == (char)c)
 			return ((char *)&s[i]);
 		i--;
 	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
 	return (NULL);
 }
 

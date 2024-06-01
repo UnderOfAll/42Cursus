@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:32:33 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/11 17:28:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:39:17 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s)
 		return (NULL);
-	string = (char *)s;
-	i = -1;
-	string = malloc(sizeof(char) * ft_strlen(string));
+	i = 0;
+	string = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!string)
 		return (NULL);
-	while (s[++i])
+	while (s[i])
+	{
 		string[i] = f(i, s[i]);
+		i++;
+	}
 	string[i] = '\0';
 	return (string);
 }

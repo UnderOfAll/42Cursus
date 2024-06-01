@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:02:30 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/15 16:40:31 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:50:14 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
 
+	if (!s)
+		return ;
 	i = -1;
-	while (s[i])
+	while (s[++i])
 		write(fd, &s[i], 1);
-	write(1, "\n", 1);
+	write(fd, "\n", 1);
 }

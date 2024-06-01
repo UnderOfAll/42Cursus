@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:11:24 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/15 16:18:26 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:38:52 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,22 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int contador;
+	char	c;
+	long	nb;
 
-	contador = 1;
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
+	nb = n;
+	if (nb < 0)
 	{
 		ft_putchar_fd('-', fd);
-		n = -n;
+		nb = -nb;
 	}
-	while (contador <= n / 10)
-		contador *= 10;
-	while (contador > 0)
-	{
-		ft_putchar_fd(n / contador + '0', fd);
-		n %= contador;
-		contador /= 10;
-	}
+	if (nb >= 10)
+		ft_putnbr_fd(nb / 10, fd);
+	c = nb % 10 + '0';
+	write(fd, &c, 1);
 }
 
-/*int main()
+/*int	main(void)
 {
-	ft_putnbr_fd(-2147483648, 0);
+	ft_putnbr_fd(-2147483648, 1);
 }*/

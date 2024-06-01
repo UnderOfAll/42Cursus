@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:57:11 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/10 16:15:49 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:51:46 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static size_t	counter(char const *s, char c)
 	size_t	verify;
 
 	i = 0;
-	j = -1;
-	while (s[++j])
+	j = 0;
+	while (s[j])
 	{
 		verify = 0;
 		while (s[j] && s[j] == c)
@@ -38,12 +38,11 @@ static size_t	counter(char const *s, char c)
 	return (i);
 }
 
-static int	mallocer(char **split, int position, size_t lenght)
+static int	cleaner(char **split, int position)
 {
 	int	i;
 
 	i = -1;
-	split[position] = malloc(lenght);
 	if (!split[position])
 	{
 		while (++i < position)
@@ -74,11 +73,11 @@ static int	filler(char const *s, char c, char **split)
 		}
 		if (lenght > 0)
 		{
-			if (mallocer(split, position, lenght) > 0)
+			split[position] = ft_substr(s, i - lenght, lenght);
+			if (cleaner(split, position) == 1)
 				return (1);
+			position++;
 		}
-		ft_strlcpy(split[position], s + i - lenght, lenght + 1);
-		position++;
 	}
 	return (0);
 }
@@ -91,21 +90,22 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	strings = counter(s, c);
-	split = malloc(sizeof(char *) * (strings + 1));
+	split = (char **)malloc(sizeof(char *) * (strings + 1));
 	if (!split)
 		return (NULL);
 	if (filler(s, c, split) > 0)
 	{
-		free(split);
 		return (NULL);
 	}
 	split[strings] = NULL;
 	return (split);
 }
 
-/*int main()
+/*int	main(void)
 {
-	char *s = "    Salve quebrada, tamo junto";
+	// char *s = "lorem ipsum dolor sit amet,
+	//consectetur adipiscing elit. Sed non risus. Suspendisse";
+	char *s = " 12 24 36 48 510 ";
 	char **v = ft_split(s, ' ');
 	int i = 0;
 	if (v)
@@ -116,7 +116,7 @@ char	**ft_split(char const *s, char c)
 			free(v[i]);
 			i++;
 		}
-		free (v);
+		free(v);
 	}
 	return (0);
 }*/

@@ -6,51 +6,54 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:02:13 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/04 16:20:42 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:44:20 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	check(char const *s1, char const *set, size_t pos)
+size_t	check(char strpos, char const *set)
 {
 	size_t	i;
 
 	i = -1;
 	while (set[++i])
 	{
-		if (s1[pos] == set[i])
-			return (0);
+		if (strpos == set[i])
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
-	size_t	j;
+	size_t	init;
+	size_t	end;
 	char	*string;
 
 	if (!s1)
 		return (NULL);
-	i = -1;
-	j = -1;
-	string = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	i = 0;
+	init = 0;
+	end = ft_strlen(s1);
+	while (s1[init] && check(s1[init], set))
+		init++;
+	while (end > init && check(s1[end - 1], set))
+		end--;
+	string = (char *)malloc(sizeof(char) * (end - init + 1));
 	if (!string)
 		return (NULL);
-	while (s1[++i])
-	{
-		if (check(s1, set, i) == 1)
-			string[++j] = s1[i];
-	}
-	string[++j] = '\0';
+	while (init < end)
+		string[i++] = s1[init++];
+	string[i] = '\0';
 	return (string);
 }
 
 /*int main()
 {
-	char const *s1 = "jorge";
-	char const *set = "o";
+	char const *s1 = "jorge or gabigol";
+	char const *set = "jorgol";
 	char *result = ft_strtrim(s1, set);
 	printf("%s", result);
 	free(result);

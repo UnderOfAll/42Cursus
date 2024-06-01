@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:41:31 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 14:40:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:32:02 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ void	*ft_memset(void *str, int c, size_t n)
 	unsigned char	*ptr;
 
 	ptr = str;
-	i = 0;
-	while (i < n)
-	{
+	i = -1;
+	while (++i < n)
 		ptr[i] = (unsigned char)c;
-		i++;
-	}
 	return (ptr);
 }
 

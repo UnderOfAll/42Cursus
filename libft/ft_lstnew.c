@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:00:50 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/15 18:18:03 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:46:46 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,12 @@ t_list	*ft_lstnew(void *content)
 	new_node->next = NULL;
 	return (new_node);
 }
+
+/*int main()
+{
+	char *jesus = "10";
+	t_list *jorge;
+
+	jorge = ft_lstnew(jesus);
+	printf("%s", (char *)jorge->content);
+}*/
