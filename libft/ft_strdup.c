@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:37:59 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/27 16:57:34 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:15:37 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *src)
 	int		i;
 	char	*dest;
 
+	if (!src)
+		return (NULL);
 	i = 0;
 	dest = malloc(sizeof(char) * ft_strlen(src) + 1);
 	if (!dest)

@@ -6,13 +6,14 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:47:15 by karocha-          #+#    #+#             */
-/*   Updated: 2024/06/01 18:25:52 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:35:45 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

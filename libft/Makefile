@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/27 17:16:09 by karocha-          #+#    #+#              #
-#    Updated: 2024/06/01 17:43:51 by karocha-         ###   ########.fr        #
+#    Updated: 2024/06/03 17:39:05 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ NAME			= libft.a
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS)
+$(NAME):		$(OBJS)
+				@ar rcs $(NAME) $(OBJS)
 
 clean:
 				$(RM) $(OBJS) $(BONUS_OBJS)
@@ -44,6 +44,6 @@ fclean:			clean
 re:				fclean $(NAME)
 
 bonus:			$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+				make OBJ="$(OBJS) $(BONUS_OBJS)" all
 
 .PHONY:			all clean fclean re bonus
