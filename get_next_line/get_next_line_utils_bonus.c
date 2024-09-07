@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 14:25:44 by karocha-          #+#    #+#             */
-/*   Updated: 2024/09/07 12:20:36 by karocha-         ###   ########.fr       */
+/*   Created: 2024/09/07 11:57:55 by karocha-          #+#    #+#             */
+/*   Updated: 2024/09/07 12:20:29 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static size_t	ft_strlen(const char *str)
 {
