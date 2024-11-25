@@ -84,15 +84,15 @@ int	ft_printf(const char *s, ...)
 
 /*int	main(void)
 {
-	// int printf_result;
-	// int ft_printf_result;
+	int printf_result;
+	//int ft_printf_result;
 
-	// write(1, "ft_printf:", 10);
-	// ft_printf_result = ft_printf("\0");
-	// printf("\nprintf: ");
+	write(1, "ft_printf:", 10);
+	ft_printf_result = ft_printf("\0");
+	printf("\nprintf: ");
 	// printf_result = printf("\0");
-	// printf("\nprintf_size: %d\nFT_printf_size: %d\n", printf_result,
-	// 	ft_printf_result);
+	printf("\nprintf_size: %d\nFT_printf_size: %d\n", printf_result,
+		ft_printf_result);
 	printf("%i", ft_printf("\n%x", 15));
 	printf("%i", printf("\n%x", 15));
 }*/

@@ -36,9 +36,9 @@ char	*get_next_line(int fd)
 	}
 	return (str);
 }
-/*int	main(void)
+int	main(void)
 {
-	int maome = open("test.txt", O_RDWR);
+	int maome = open("test1.txt", O_RDWR);
 	int	i;
 	char *jorge;
 
@@ -51,4 +51,4 @@ char	*get_next_line(int fd)
 	}
 
 	close(maome);
-}*/
+}
