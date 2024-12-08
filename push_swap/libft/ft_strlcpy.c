@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 19:59:16 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/27 19:38:47 by karocha-         ###   ########.fr       */
+/*   Created: 2024/04/13 14:42:28 by karocha-          #+#    #+#             */
+/*   Updated: 2024/04/27 16:59:13 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
 
-	i = -1;
-	while (s[++i])
-		write(fd, &s[i], 1);
+	i = 0;
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (ft_strlen(src));
 }
+
+/*int main()
+{
+	const char *src = "salve";
+	char dest[20];
+	size_t  cpy = ft_strlcpy(dest, src, sizeof(dest));
+	
+	printf("%s\n", dest);
+	printf("%zu", cpy);
+}*/

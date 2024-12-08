@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 19:59:16 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/27 19:38:47 by karocha-         ###   ########.fr       */
+/*   Created: 2024/04/14 11:53:54 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/30 16:17:15 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	while (s[++i])
-		write(fd, &s[i], 1);
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
 }
+
+/*int main()
+{
+	char buffer[] = "jorge";
+	printf("%s\n", ft_strchr(buffer, 'r'));
+}*/

@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:30:59 by karocha-          #+#    #+#             */
-/*   Updated: 2024/11/25 20:24:37 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:24:51 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	rotate(t_list **lst)
 {
 	t_list	*swp;
 	t_list	*last;
+
 	if (!(*lst) || !(*lst)->next)
 		return ;
 	swp = *lst;

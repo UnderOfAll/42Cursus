@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 10:20:55 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 18:16:33 by karocha-         ###   ########.fr       */
+/*   Created: 2024/04/13 16:13:14 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/30 16:48:31 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pushswap.h"
 
-void	ft_bzero(void *s, size_t n)
+long	ft_atol(const char *str)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	long	i;
+	long	res;
+	long	sign;
 
-	ptr = (unsigned char *)s;
 	i = 0;
-	while (i < n)
-	{
-		ptr[i] = '\0';
+	sign = 1;
+	res = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	}
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + str[i++] - '0';
+	return (res * sign);
 }
+
 /*int main()
 {
-	char buffer[]= "asdas";
-	ft_bzero((char *)buffer, 5);
+	printf("%d\n", ft_atoi("      +21474836"));
 }*/

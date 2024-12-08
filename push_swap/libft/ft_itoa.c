@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 10:20:55 by karocha-          #+#    #+#             */
-/*   Updated: 2024/04/28 18:16:33 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/09 17:34:15 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/30 17:09:38 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_itoa(int n)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	char	string[12];
+	long	nb;
+	int		len;
 
-	ptr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	nb = n;
+	len = 11;
+	string[len] = '\0';
+	if (nb == 0)
+		return (ft_strdup("0"));
+	if (nb < 0)
+		nb = -nb;
+	while (nb > 0)
 	{
-		ptr[i] = '\0';
-		i++;
+		string[--len] = (nb % 10 + '0');
+		nb /= 10;
 	}
+	if (n < 0)
+		string[--len] = '-';
+	return (ft_strdup(&string[len]));
 }
-/*int main()
+
+/* int main()
 {
-	char buffer[]= "asdas";
-	ft_bzero((char *)buffer, 5);
-}*/
+	char *jorge = ft_itoa(-2147483648);
+	printf("%s\n", jorge);
+	free (jorge);
+} */

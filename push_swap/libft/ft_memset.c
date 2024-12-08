@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 17:00:50 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/17 16:46:46 by karocha-         ###   ########.fr       */
+/*   Created: 2024/04/13 17:41:31 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/31 18:32:02 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	t_list	*new_node;
+	size_t			i;
+	unsigned char	*ptr;
 
-	new_node = malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
+	ptr = str;
+	i = -1;
+	while (++i < n)
+		ptr[i] = (unsigned char)c;
+	return (ptr);
 }
 
 /*int main()
 {
-	char *jesus = "10";
-	t_list *jorge;
-
-	jorge = ft_lstnew(jesus);
-	printf("%s", (char *)jorge->content);
+	char buffer[] = "Kickoff #7";
+	printf("%s", (char *)ft_memset(buffer, '$', 10));
 }*/

@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 16:51:09 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/31 19:49:21 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/15 17:00:50 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/17 16:46:46 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstnew(long content)
 {
-	int	counter;
+	t_list	*new_node;
 
-	counter = 0;
-	while (lst != NULL)
-	{
-		counter++;
-		lst = lst->next;
-	}
-	return (counter);
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->nbr = content;
+	new_node->next = NULL;
+	return (new_node);
 }
 
 /*int main()
 {
-	t_list	node1;
-	t_list	node2;
-	t_list	node3;
-	int	val1 = 1;
-	int	val2 = 2;
-	int	val3 = 3;
-	node1.content = &val1;
-	node2.content = &val2;
-	node3.content = &val3;
+	char *jesus = "10";
+	t_list *jorge;
 
-	t_list *lst;
-	lst = &node1;
-	node1.next = &node2;
-	node2.next = &node3;
-	node3.next = NULL;
-
-	printf("%d", ft_lstsize(lst));
+	jorge = ft_lstnew(jesus);
+	printf("%s", (char *)jorge->content);
 }*/
