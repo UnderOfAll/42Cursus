@@ -27,7 +27,7 @@ HELPER_FUNC_DIR	= ./helper_func/helpers.c ./helper_func/helpers2.c \
 ./helper_func/ft_atol.c ./helper_func/ft_lstadd_back.c \
 ./helper_func/ft_lstadd_front.c ./helper_func/ft_lstdelone.c \
 ./helper_func/ft_lstiter.c ./helper_func/ft_lstlast.c ./helper_func/ft_lstnew.c \
-./helper_func/ft_lstsize.c \
+./helper_func/ft_lstsize.c\
 
 SRCS			= $(MAIN) $(MOVES_DIR) $(ALGORITHM_DIR) \
 $(HELPER_FUNC_DIR)

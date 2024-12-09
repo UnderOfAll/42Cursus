@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:10:09 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/08 23:08:51 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:04:44 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	best_rot(t_list **stack, int index, void (*up)(t_list **),
 	int	back;
 	int	front;
 
-	lst_size = ft_lstsize(stack) + 1;
+	lst_size = ft_lstsize2(*stack) + 1;
 	back = lst_size - index;
 	front = index - 1;
 	if (back < front)

@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:18:05 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/08 22:46:10 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:19:37 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	sort_starter(ac, &a, &b);
+	
 	free_lst(&a);
 	free_lst(&b);
 	return (0);

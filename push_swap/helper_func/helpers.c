@@ -19,7 +19,7 @@ int	smallest(t_list *a)
 	if (!(a))
 		return (0);
 	i = LONG_MAX;
-	while ((a)->next)
+	while ((a))
 	{
 		if (i > (a)->nbr)
 			i = (a)->nbr;

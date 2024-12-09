@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:35:01 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/08 23:16:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:18:58 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	algorithm(t_list **a, t_list **b)
 {
 	if (!a || !(*a) || !b)
 		return ;
-	while (ft_lstsize(a) > 5)
+	while (ft_lstsize2(*a) > 5)
 	{
 		if ((*a) && (*a)->nbr < nb_avg(a))
 			pb(a, b);

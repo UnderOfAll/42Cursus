@@ -73,8 +73,6 @@ void	best_rot(t_list **stack, int index, void (*up)(t_list **),
 void	low_on_top(t_list **a, t_list **b);
 void	last_organize(t_list **a);
 
-void	print_lst(t_list *a);
-
 long	ft_atol(const char *str);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
