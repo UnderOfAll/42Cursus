@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                           :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:56:00 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/06 11:56:12 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:09:38 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	smallest(t_list *a)
 	}
 	return (i);
 }
+
 int	nb_avg(t_list **a)
 {
 	long	i;
@@ -87,6 +88,7 @@ void	cost_mod(t_list *a, t_list *b)
 		b = b->next;
 	}
 }
+
 // this function finds the cheapest cost element in the stack
 int	cheapest_cost(t_list **a)
 {

@@ -1,15 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2024/11/03 17:42:46 by karocha-          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:23 by karocha-         ###   ########.fr       */
+/*   pushswap.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 19:55:32 by karocha-          #+#    #+#             */
+/*   Updated: 2024/12/06 17:39:16 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +25,12 @@
 
 typedef struct s_list
 {
-	int nbr;
-	int index;
-	int cost;
-	int bst_frn;
-
-	struct s_list *next;
-} t_list;
+	int				nbr;
+	int				index;
+	int				cost;
+	int				bst_frn;
+	struct s_list	*next;
+}					t_list;
 
 // moves
 void	push(t_list **dst, t_list **src);
@@ -57,19 +53,19 @@ void	sb(t_list **b);
 void	ss(t_list **a, t_list **b);
 
 // parser
-int	parser(char **av, int ac);
-int	duplicates(char **av, int ac);
-int	limit(char **av);
-int	numcheck(char **av);
+int		parser(char **av, int ac);
+int		duplicates(char **av, int ac);
+int		limit(char **av);
+int		numcheck(char **av);
 
 // helper_functions
-int	smallest(t_list *a);
-int	nb_avg(t_list **a);
+int		smallest(t_list *a);
+int		nb_avg(t_list **a);
 void	index_mod(t_list **lst);
 void	cost_mod(t_list *a, t_list *b);
-int	cheapest_cost(t_list **a);
+int		cheapest_cost(t_list **a);
 void	best_rot(t_list **stack, int index, void (*up)(t_list **),
-		void (*down)(t_list **));
+			void (*down)(t_list **));
 void	low_on_top(t_list **a, t_list **b);
 void	last_organize(t_list **a);
 
@@ -80,11 +76,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(int));
 void	ft_lstiter(t_list *lst, void (*f)(int));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(long content);
-int	ft_lstsize(t_list **lst);
-int	ft_lstsize2(t_list *lst);
+int		ft_lstsize(t_list **lst);
+int		ft_lstsize2(t_list *lst);
 
 // Algorithm
-int	check_sorted(t_list **a);
+int		check_sorted(t_list **a);
 
 void	sort2(t_list **a);
 void	sort3(t_list **a);
