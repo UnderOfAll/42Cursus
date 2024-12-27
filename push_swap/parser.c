@@ -6,24 +6,24 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 19:55:32 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/18 21:20:55 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:41:43 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	parser(char **av, int ac)
+int	parser(int ac, char **av)
 {
 	if (numcheck(av))
 		return (1);
 	else if (limit(av))
 		return (1);
-	else if (duplicates(av, ac))
+	else if (duplicates(ac, av))
 		return (1);
 	return (0);
 }
 
-int	duplicates(char **av, int ac)
+int	duplicates(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -72,7 +72,7 @@ int	numcheck(char **av)
 			return (1);
 		while (av[i][j])
 		{
-			if (av[i][j] < 48 || av[i][j] > 57)
+			if (av[i][j] < 48 && av[i][j] > 57)
 				return (1);
 			j++;
 		}

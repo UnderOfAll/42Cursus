@@ -12,7 +12,7 @@
 
 NAME			= push_swap
 CC				= cc
-CFLAGS			= -g -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g
 RM				= rm -rf
 
 MAIN			= main.c parser.c
@@ -20,21 +20,19 @@ MAIN			= main.c parser.c
 MOVES_DIR		= ./moves/push.c ./moves/rotate.c ./moves/rrotate.c \
 ./moves/swap.c
 
-ALGORITHM_DIR	= ./algorithm/algorithm.c ./algorithm/sorts.c \
+ALGORITHM_DIR	= ./algorithm/algorithm.c ./algorithm/sorts.c ./algorithm/helpers.c \
+./algorithm/helpers2.c
 
 
-HELPER_FUNC_DIR	= ./helper_func/helpers.c ./helper_func/helpers2.c \
-./helper_func/ft_atol.c ./helper_func/ft_lstadd_back.c \
-./helper_func/ft_lstadd_front.c ./helper_func/ft_lstdelone.c \
-./helper_func/ft_lstiter.c ./helper_func/ft_lstlast.c ./helper_func/ft_lstnew.c \
-./helper_func/ft_lstsize.c\
+LIBFT_DIR 		= ./libft/ft_atol.c ./libft/ft_bzero.c ./libft/ft_calloc.c \
+./libft/ft_lstadd_back.c ./libft/ft_lstadd_front.c ./libft/ft_lstlast.c \
+./libft/ft_lstnew.c ./libft/ft_lstsize.c ./libft/ft_putstr_fd.c
 
 SRCS			= $(MAIN) $(MOVES_DIR) $(ALGORITHM_DIR) \
-$(HELPER_FUNC_DIR)
+$(LIBFT_DIR)
 
 LIBFT_DIR		= ./libft/libft.a
 LIBFT_PATH		= ./libft
-LIBFT_HEADER	= ./libft/libft.h
 
 
 OBJS = $(SRCS:.c=.o)

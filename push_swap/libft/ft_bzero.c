@@ -10,19 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pushswap.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	int			i;
+	char	*ptr;
 
-	ptr = (unsigned char *)s;
+	ptr = s;
 	i = 0;
-	while (i < n)
+	while (n > 0)
 	{
 		ptr[i] = '\0';
 		i++;
+		n--;
 	}
 }
 /*int main()

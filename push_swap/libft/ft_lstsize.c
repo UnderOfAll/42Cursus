@@ -12,28 +12,13 @@
 
 #include "../pushswap.h"
 
-int	ft_lstsize(t_list **lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	counter;
 
-	if (!lst || !(*lst))
-		return (0);
 	counter = 0;
-	while ((*lst) != NULL)
-	{
-		counter++;
-		(*lst) = (*lst)->next;
-	}
-	return (counter);
-}
-
-int	ft_lstsize2(t_list *lst)
-{
-	int	counter;
-
 	if (!lst)
 		return (0);
-	counter = 0;
 	while (lst != NULL)
 	{
 		counter++;

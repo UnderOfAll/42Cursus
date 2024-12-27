@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:10:09 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/18 18:11:34 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:19:32 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	best_rot(t_list **stack, int index, void (*up)(t_list **),
 	int	back;
 	int	front;
 
-	lst_size = ft_lstsize2(*stack) + 1;
+	lst_size = ft_lstsize(*stack) + 1;
 	back = lst_size - index;
 	front = index - 1;
 	if (back < front)
@@ -60,7 +60,6 @@ void	low_on_top(t_list **a, t_list **b)
 		aux = aux->next;
 	}
 }
-
 //this is where it ends, after we put everything organized in stack a
 //we most probably wont have it in ascending order as its supposed, so
 //we just do what we have done before, find the smallest number and rotate
@@ -68,8 +67,8 @@ void	low_on_top(t_list **a, t_list **b)
 void	last_organize(t_list **a)
 {
 	t_list	*aux;
-	int		smallest_nb;
-	int		smallest_index;
+	int	smallest_nb;
+	int	smallest_index;
 
 	smallest_nb = INT_MAX;
 	index_mod(a);

@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 17:41:31 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/31 18:32:02 by karocha-         ###   ########.fr       */
+/*   Created: 2024/04/13 16:13:14 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/30 16:48:31 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pushswap.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+long	ft_atol(const char *str)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	size_t	i;
+	long	res;
+	size_t	sign;
 
-	ptr = str;
-	i = -1;
-	while (++i < n)
-		ptr[i] = (unsigned char)c;
-	return (ptr);
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + str[i++] - '0';
+	return (res * sign);
 }
 
 /*int main()
 {
-	char buffer[] = "Kickoff #7";
-	printf("%s", (char *)ft_memset(buffer, '$', 10));
+	printf("%d\n", ft_atoi("      +21474836"));
 }*/

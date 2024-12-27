@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 16:13:14 by karocha-          #+#    #+#             */
-/*   Updated: 2024/05/30 16:48:31 by karocha-         ###   ########.fr       */
+/*   Created: 2024/05/15 18:19:18 by karocha-          #+#    #+#             */
+/*   Updated: 2024/05/31 19:47:27 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-long	ft_atol(const char *str)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	long	i;
-	long	res;
-	long	sign;
-
-	i = 0;
-	sign = 1;
-	res = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-		if (str[i++] == '-')
-			sign = -1;
-	while (str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + str[i++] - '0';
-	return (res * sign);
+	if (!lst || !new)
+		return ;
+	if (*lst != NULL)
+		new->next = *lst;
+	*lst = new;
 }
 
 /*int main()
 {
-	printf("%d\n", ft_atoi("      +21474836"));
+	int i = -10;
+	char *buffer;
+	t_list *tmp;
+	t_list *lst;
+
+	while(i < 11)
+	{
+		buffer = ft_itoa(i);
+        printf("buffer: %s (%i)\n", buffer, i);
+		tmp = ft_lstnew(buffer);
+		ft_lstadd_front(&lst, tmp);
+		i++;
+	}
+	while (lst->next != NULL)
+	{
+		printf("%s ", (char *)lst->content);
+		lst = lst->next;
+	}
 }*/

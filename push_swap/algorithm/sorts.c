@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:39:04 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/18 18:04:21 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:07:20 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,4 @@ void	sort5(t_list **a, t_list **b)
 	pb(a, b);
 	sort4(a, b);
 	pa(a, b);
-}
-
-int	check_sorted(t_list **a)
-{
-	t_list	*aux;
-	int		i;
-
-	if (!a || !(*a))
-		return (1);
-	i = 1;
-	aux = *a;
-	while (aux->next)
-	{
-		if (aux->nbr > aux->next->nbr)
-			i = 0;
-		aux = aux->next;
-	}
-	return (i);
 }

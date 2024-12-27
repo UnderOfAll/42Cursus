@@ -6,11 +6,27 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:18:05 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/18 17:50:22 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:03:07 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+int	check_sorted(t_list **a)
+{
+	t_list	*aux;
+	int		i;
+
+	i = 1;
+	aux = *a;
+	while (aux->next)
+	{
+		if (aux->nbr > aux->next->nbr)
+			i = 0;
+		aux = aux->next;
+	}
+	return (i);
+}
 
 void	make_lst(t_list **a, int ac, char **av)
 {
@@ -26,15 +42,15 @@ void	make_lst(t_list **a, int ac, char **av)
 
 void	free_lst(t_list **lst)
 {
-	t_list	*aux;
+	t_list	*new_node;
 
-	if (!lst || !(*lst))
+	if (!lst || !*lst)
 		return ;
-	while (*lst != NULL)
+	while ((*lst != NULL))
 	{
-		aux = (*lst)->next;
+		new_node = (*lst)->next;
 		free(*lst);
-		*lst = aux;
+		*lst = new_node;
 	}
 }
 
@@ -61,7 +77,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac < 2)
 		return (0);
-	if (parser(av, ac))
+	if (parser(ac, av))
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (0);
