@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:30:59 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/08 18:24:51 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:18:17 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	rr(t_list **a, t_list **b)
 	rotate(b);
 	ft_putstr_fd("rr\n", 1);
 }
+
 void	rotate(t_list **lst)
 {
 	t_list	*swp;

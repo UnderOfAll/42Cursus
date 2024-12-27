@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 11:30:45 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/27 18:18:08 by karocha-         ###   ########.fr       */
+/*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
+/*   Updated: 2024/12/27 21:36:07 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../so_long.h"
 
-void	pa(t_list **a, t_list **b)
+int	map_name(char *map)
 {
-	push(a, b);
-	ft_putstr_fd("pa\n", 1);
+	int	len;
+
+	if (!map_name)
+	{
+		ft_printf("No name for the map\n");
+		return (1);
+	}
+	len = ft_strlen(map_name);
+	if (len < 4 || ft_strncmp(&map[len -4], ".ber", 4) != 0)
+	{
+		ft_printf("Map name doesn't end with .ber\n");
+		return (1);
+	}
+	return (0);
 }
 
-void	pb(t_list **a, t_list **b)
+int	read_map(t_game *game)
 {
-	push(b, a);
-	ft_putstr_fd("pb\n", 1);
-}
-
-void	push(t_list **dst, t_list **src)
-{
-	t_list	*swp;
-
-	if (!(*src))
-		return ;
-	swp = *src;
-	*src = (*src)->next;
-	swp->next = *dst;
-	*dst = swp;
+	game->fd = open(game->file_map, O_RDONLY);
+	if (game->fd < 0)
+		return (0);
+	
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                           :+:      :+:    :+:   */
+/*   pushswap.h                                           :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -24,12 +24,12 @@
 
 typedef struct s_list
 {
-	int 			nbr;
-	int 			index;
-	int 			cost;
-	int 			bst_frn;
+	int				nbr;
+	int				index;
+	int				cost;
+	int				bst_frn;
 	struct s_list	*next;
-} t_list;
+}					t_list;
 
 // moves
 void	push(t_list **dst, t_list **src);
@@ -64,7 +64,7 @@ void	index_mod(t_list **lst);
 void	cost_mod(t_list *a, t_list *b);
 int		cheapest_cost(t_list **a);
 void	best_rot(t_list **stack, int index, void (*up)(t_list **),
-		void (*down)(t_list **));
+			void (*down)(t_list **));
 void	low_on_top(t_list **a, t_list **b);
 void	last_organize(t_list **a);
 
@@ -80,7 +80,7 @@ int		ft_lstsize(t_list *lst);
 void	ft_putstr_fd(char *s, int fd);
 
 // Algorithm
-int	check_sorted(t_list **a);
+int		check_sorted(t_list **a);
 
 void	sort2(t_list **a);
 void	sort3(t_list **a);

@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:35:01 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/19 20:19:56 by karocha-         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:16:35 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	algorithm(t_list **a, t_list **b)
 // difference in the current nbr of each stack, and returns it bff
 void	best_friend(t_list **a, t_list **b)
 {
-	t_list	*aux_a;
-	t_list	*aux_b;
+	t_list		*aux_a;
+	t_list		*aux_b;
 	long int	i;
 	long int	j;
 
