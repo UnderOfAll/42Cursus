@@ -6,13 +6,13 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/27 21:36:07 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:52:29 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	map_name(char *map)
+/*int	map_name(char *map)
 {
 	int	len;
 
@@ -28,12 +28,26 @@ int	map_name(char *map)
 		return (1);
 	}
 	return (0);
-}
+}*/
 
-int	read_map(t_game *game)
+
+void	read_map(char *av, t_game *game)
 {
-	game->fd = open(game->file_map, O_RDONLY);
-	if (game->fd < 0)
-		return (0);
-	
+	int		fd;
+	char	*mapper;
+	int		i;
+
+	i = 0;
+	game = malloc(sizeof(t_game));
+	game->map = malloc(sizeof(char *) * map_y(av));
+	mapper = "romario";
+	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return ;
+	while (mapper)
+	{
+		mapper = get_next_line(fd);
+		game->map[i++] = mapper;
+	}
+	print_map(game);
 }

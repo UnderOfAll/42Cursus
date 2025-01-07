@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:16:53 by karocha-          #+#    #+#             */
-/*   Updated: 2024/12/27 21:32:25 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:31:24 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,24 @@ int	map_x(char *str)
 	return (x);
 }
 
-int	line_mod(t_game *game, char *line)
+int	map_y(char *str)
+{
+	int		counter;
+	int		fd;
+	char	*aux;
+
+	aux = "jorge";
+	fd = open(str, O_RDONLY);
+	counter = 0;
+	while(aux)
+	{
+		aux = get_next_line(fd);
+		counter++;
+	}
+	return (counter);
+}
+
+/*int	line_mod(t_game *game, char *line)
 {
 	char	**aux;
 	int		i;
@@ -44,4 +61,15 @@ int	line_mod(t_game *game, char *line)
 		free(game->map);
 	game->map = aux;
 	return (1);
+}*/
+
+void	print_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		ft_printf("%s", game->map[i++]);
+	}
 }
