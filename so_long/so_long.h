@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/07 19:51:40 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:05:27 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ typedef struct s_game
 	int		player_x;
 	int		player_y;
 
-	int		x;
-	int		y;
-
 	int		fd;
 	int		moves;
 	int		endgame;
@@ -54,11 +51,15 @@ typedef struct s_game
 //parse_map
 int	map_name(char *map);
 void	read_map(char *av, t_game *game);
+void	wall_check(t_game *game);
 
 //helpers
-int	map_x(char *str);
-int	map_y(char *str);
+int	horizontal_map(char *str);
+int	vertical_map(char *str);
 int	line_mod(t_game *game, char *line);
 void	print_map(t_game *game);
+
+//frees
+void	free_memory(t_game *game);
 
 #endif

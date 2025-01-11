@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:53:04 by karocha-          #+#    #+#              #
-#    Updated: 2025/01/07 17:48:03 by karocha-         ###   ########.fr        #
+#    Updated: 2025/01/11 18:05:39 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT_DIR		= ./libraries/libft/libft.a
 LIBFT_PATH		= ./libraries/libft
 LIBFT_HEADER	= ./libraries/libft/libft.h
 
-SRCS = main.c ./parse_map/helpers.c ./parse_map/map_check.c
+SRCS = main.c ./parse_map/helpers.c ./parse_map/map_check.c ./parse_map/exit.c
 
 OBJS = $(SRCS:.c=.o)
 
