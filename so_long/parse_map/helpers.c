@@ -86,8 +86,8 @@ int	valid_chars(t_game *game)
 	j = 0;
 	while(game->map[++i][j])
 	{
-		j = 0;
-		while(game->map[i][j++])
+		j = -1;
+		while(game->map[i][++j])
 			if (game->map[i][j] != '1' && game->map[i][j] != '0' && 
 				game->map[i][j] != 'P' && game->map[i][j] != 'C' &&
 				game->map[i][j] != 'E')
