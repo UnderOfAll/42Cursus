@@ -83,8 +83,7 @@ int	valid_chars(t_game *game)
 	int	j;
 
 	i = -1;
-	j = 0;
-	while(game->map[++i][j])
+	while(game->map[++i])
 	{
 		j = -1;
 		while(game->map[i][++j])
