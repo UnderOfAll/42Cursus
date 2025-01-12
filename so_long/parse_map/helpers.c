@@ -17,10 +17,8 @@ int	horizontal_map(char *str)
 	int	x;
 
 	x = 0;
-	while (str[x] != '\0')
+	while (str[x] != '\0' && str[x] != '\n')
 		x++;
-	if (str[x] == '\n')
-		x--;
 	return (x);
 }
 
@@ -63,6 +61,41 @@ int	line_mod(t_game *game, char *line)
 	return (1);
 }
 
+int	is_rectangle(t_game *game)
+{
+	size_t	i;
+	int	j;
+
+	i = ft_strlen(game->map[0]);
+	j = 0;
+	while (game->map[++j])
+		if (i != ft_strlen(game->map[j]))
+		{
+			error_message(game, "map is not a rectangle\n");
+			return (0);
+		}
+	return (1);
+}
+
+int	valid_chars(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while(game->map[++i][j])
+	{
+		j = 0;
+		while(game->map[i][j++])
+			if (game->map[i][j] != '1' && game->map[i][j] != '0' && 
+				game->map[i][j] != 'P' && game->map[i][j] != 'C' &&
+				game->map[i][j] != 'E')
+				return (0);
+	}
+	return (1);
+}
+
 void	print_map(t_game *game)
 {
 	int	i;
@@ -73,4 +106,5 @@ void	print_map(t_game *game)
 		ft_printf("%s", game->map[i]);
 		i++;
 	}
+	ft_printf("\n");
 }

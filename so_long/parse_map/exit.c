@@ -24,3 +24,9 @@ void	free_memory(t_game *game)
 		free(game->map);
 	}
 }
+
+void	error_message(t_game *game, char *str)
+{
+	ft_printf("%s\n", str);
+	free_memory(game);
+}

@@ -58,8 +58,10 @@ int	horizontal_map(char *str);
 int	vertical_map(char *str);
 int	line_mod(t_game *game, char *line);
 void	print_map(t_game *game);
+int	is_rectangle(t_game *game);
 
 //frees
 void	free_memory(t_game *game);
+void	error_message(t_game *game, char *str);	
 
 #endif
