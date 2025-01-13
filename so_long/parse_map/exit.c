@@ -20,13 +20,15 @@ void	free_memory(t_game *game)
 	if (game->map)
 	{
 		while(i < game->map_y)
-			free(game->map[i]);
+			free(game->map[i++]);
 		free(game->map);
 	}
+	free(game);
 }
 
 void	error_message(t_game *game, char *str)
 {
 	ft_printf("%s\n", str);
 	free_memory(game);
+	exit(1);
 }

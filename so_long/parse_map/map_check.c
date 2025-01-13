@@ -45,7 +45,6 @@ static	int	walls_y(t_game *game)
 	int	y;
 
 	y = -1;
-	ft_printf("game->map_x :%i\n", game->map_x);
 	while (++y < game->map_y)
 		if (game->map[y][0] != '1' || game->map[y][game->map_x - 1] != '1')
 			return (0);
@@ -87,5 +86,6 @@ void	read_map(char *av, t_game *game)
 	game->map_x = horizontal_map(game->map[0]);
 	wall_check(game);
 	is_rectangle(game);
+	valid_chars(game);
 	print_map(game);
 }

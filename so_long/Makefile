@@ -24,21 +24,21 @@ SRCS = main.c ./parse_map/helpers.c ./parse_map/map_check.c ./parse_map/exit.c
 OBJS = $(SRCS:.c=.o)
 
 $(NAME):		$(OBJS)  $(LIBFT_DIR)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR) -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR) -o $(NAME)
 
 $(LIBFT_DIR): 
-			make -C$(LIBFT_PATH)
+			@make -sC $(LIBFT_PATH)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		make -C$(LIBFT_PATH) clean
-		$(RM) $(OBJS)
+		@make -sC $(LIBFT_PATH) clean
+		@$(RM) $(OBJS)
 
 fclean: clean
-		make -C$(LIBFT_PATH) fclean
-		$(RM) $(NAME)
+		@make -sC $(LIBFT_PATH) fclean
+		@$(RM) $(NAME)
 
 re: fclean all
 
