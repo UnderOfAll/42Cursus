@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/11 18:05:27 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:50:00 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,35 @@ typedef struct s_game
 	int		player_x;
 	int		player_y;
 
+	int		exit_x;
+	int		exit_y;
+
+	int		nb_collectable;
+	int		collectable_aux;
+	int		aux_exit;
 	int		fd;
 	int		moves;
 	int		endgame;
 }			t_game;
 
 //parse_map
-int	map_name(char *map);
 void	read_map(char *av, t_game *game);
 void	wall_check(t_game *game);
+int		map_name(char *map);
 
 //helpers
-int	horizontal_map(char *str);
-int	vertical_map(char *str);
-int	line_mod(t_game *game, char *line);
+int		horizontal_map(char *str);
+int		vertical_map(char *str);
+int		line_mod(t_game *game, char *line);
 void	print_map(t_game *game);
-int	is_rectangle(t_game *game);
-int	valid_chars(t_game *game);
+void	valid_chars(t_game *game);
+
+//flood_fill
+void	doable_map(t_game *game);
 
 //frees
-void	free_memory(t_game *game);
-void	error_message(t_game *game, char *str);	
+void	free_map(t_game *game);
+void	error_message(t_game *game, char *str);
+void	free_arr_str(char **str);
 
 #endif

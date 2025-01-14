@@ -6,13 +6,13 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:02:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/11 18:06:48 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:19:48 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	free_memory(t_game *game)
+void	free_map(t_game *game)
 {
 	int	i;
 
@@ -28,7 +28,20 @@ void	free_memory(t_game *game)
 
 void	error_message(t_game *game, char *str)
 {
-	ft_printf("%s\n", str);
-	free_memory(game);
+	if (str && str[0] != '\0')
+		ft_putstr_fd(str, 2);
+	if (!game)
+		exit(0);
+	free_map(game);
 	exit(1);
+}
+
+void	free_arr_str(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
 }

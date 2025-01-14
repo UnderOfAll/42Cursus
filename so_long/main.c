@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:39 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/07 17:47:20 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:30 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,8 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	game = NULL;
-	if (ac == 2)
-	{
-		read_map(av[1], game);
-	}
-	else
-	{
-		ft_printf("Error, invalid input\n");
-		exit (1);
-	}
+	if (ac != 2)
+		error_message(game, "Invalid number of arguments");
+	read_map(av[1], game);
 	return (0);
 }

@@ -6,60 +6,64 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/11 18:09:46 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:50:18 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/*int	map_name(char *map)
+static	int	is_rectangle(t_game *game)
 {
-	int	len;
-
-	if (!map_name)
-	{
-		ft_printf("No name for the map\n");
-		return (0);
-	}
-	len = ft_strlen(map_name);
-	if (len < 4 || ft_strncmp(&map[len -4], ".ber", 4) != 0)
-	{
-		ft_printf("Map name doesn't end with .ber\n");
-		return (0);
-	}
-	return (1);
-}*/
-static	int	walls_x(t_game *game)
-{
+	int	j;
 	int	i;
+	int	k;
 
-	i = -1;
-	while (++i < game->map_x)
-		if ((game->map[0][i] != '1' || game->map[game->map_y][i] != '1'))
-			return (0);
+	i = horizontal_map(game->map[0]);
+	j = -1;
+	while (game->map[++j])
+	{
+		k = 0;
+		while (game->map[j][k++])
+			if (game->map[j][k] == '\n' || game->map[j][k] == '\0')
+				break;
+		if (k != i)
+			{
+				error_message(game, "Map is not a rectangle.\n");
+				return (0);
+			}
+	}
 	return (1);
 }
 
-static	int	walls_y(t_game *game)
+int	horizontal_map(char *str)
 {
-	int	y;
+	int	x;
 
-	y = -1;
-	while (++y < game->map_y)
-		if (game->map[y][0] != '1' || game->map[y][game->map_x - 1] != '1')
-			return (0);
-	return (1);
+	x = 0;
+	if (!str)
+		return (0);
+	while (str[x] != '\0' && str[x] != '\n')
+		x++;
+	return (x);
 }
 
-void	wall_check(t_game *game)
+int	vertical_map(char *str)
 {
-	int	walls_horizontal;
-	int	walls_vertical;
+	int		counter;
+	int		fd;
+	char	*aux;
 
-	walls_horizontal = walls_x(game);
-	walls_vertical = walls_y(game);
-	if (!walls_horizontal || !walls_vertical)
-		error_message(game, "Map is not rounded by walls.");
+	aux = "jorge";
+	fd = open(str, O_RDONLY);
+	counter = 0;
+	while (aux)
+	{
+		if (counter != 0)
+			free(aux);
+		aux = get_next_line(fd);
+		counter++;
+	}
+	return (counter);
 }
 
 void	read_map(char *av, t_game *game)
@@ -68,24 +72,29 @@ void	read_map(char *av, t_game *game)
 	char	*mapper;
 	int		i;
 
+	if (map_name(av) != 1)
+		error_message(game, "Incorrect file name.\n");
 	i = 0;
+	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		error_message(game, "File is not in the repository.\n");
 	game = malloc(sizeof(t_game));
 	game->map = malloc(sizeof(char *) * vertical_map(av));
 	if (!game || !game->map)
 		return ;
 	mapper = "romario";
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
-		return ;
 	while (mapper)
 	{
 		mapper = get_next_line(fd);
 		game->map[i++] = mapper;
 	}
+	if (!game->map[0])
+		error_message(game, "Map is empty\n");
 	game->map_y = i - 2;
 	game->map_x = horizontal_map(game->map[0]);
 	wall_check(game);
 	is_rectangle(game);
 	valid_chars(game);
+	doable_map(game);
 	print_map(game);
 }

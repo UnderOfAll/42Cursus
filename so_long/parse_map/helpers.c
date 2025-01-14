@@ -6,42 +6,13 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:16:53 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/11 18:09:08 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:57:08 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	horizontal_map(char *str)
-{
-	int	x;
-
-	x = 0;
-	while (str[x] != '\0' && str[x] != '\n')
-		x++;
-	return (x);
-}
-
-int	vertical_map(char *str)
-{
-	int		counter;
-	int		fd;
-	char	*aux;
-
-	aux = "jorge";
-	fd = open(str, O_RDONLY);
-	counter = 0;
-	while (aux)
-	{
-		if (counter != 0)
-			free(aux);
-		aux = get_next_line(fd);
-		counter++;
-	}
-	return (counter);
-}
-
-int	line_mod(t_game *game, char *line)
+/*int	line_mod(t_game *game, char *line)
 {
 	char	**aux;
 	int		i;
@@ -61,40 +32,70 @@ int	line_mod(t_game *game, char *line)
 		free(game->map);
 	game->map = aux;
 	return (1);
-}
+}*/
 
-int	is_rectangle(t_game *game)
+static	void	get_position(t_game *game, int x, int y, char c)
 {
-	int	j;
-	size_t	i;
-	size_t	k;
-
-	i = ft_strlen(game->map[0]);
-	j = -1;
-	while (game->map[++j])
+	if (c == 'P')
 	{
-		k = 0;
-		while (game->map[j][k++])
-			if (game->map[j][k] == '\n')
-				break;
-		if (k == '\0')
-			k--;
-		ft_printf("i=%i\n", i);
-		ft_printf("k=%i\n", k);
-		if (k != i)
-			{
-				error_message(game, "Map is not a rectangle\n");
-				return (0);
-			}
+		game->player_x = x;
+		game->player_y = y;
 	}
-	return (1);
+	if (c == 'E')
+	{
+		game->exit_x = x;
+		game->exit_y = y;
+	}
 }
 
-
-
-int	valid_chars(t_game *game)
+static	void	check_elements(t_game *game, char c)
 {
-	size_t	i;
+	int	y;
+	int	x;
+	int counter;
+
+	y = -1;
+	counter = 0;
+	while (++y < game->map_y)
+	{
+		x = -1;
+		while (++x < game->map_x)
+		{
+			if (game->map[y][x] == c)
+			{
+				counter++;
+				get_position(game, x, y, c);
+			}
+			ft_printf("counter:%i\n", counter);
+		}
+	}
+	if (counter != 1)
+		error_message(game, "Number of players and/or exits are not 1\n");
+}
+
+static	void	check_c(t_game *game, char c)
+{
+	int	i;
+	int	j;
+	int	counter;
+
+	i = -1;
+	counter = 0;
+	while (++i < game->map_y)
+	{
+		j = -1;
+		while (++j < game->map_x)
+			if (game->map[i][j] == c)
+				counter++;
+	}
+	if (counter < 1)	
+		error_message(game, "Number of collectables not 1.\n");
+	game->nb_collectable = counter;
+}
+
+void	valid_chars(t_game *game)
+{
+	int	i;
 	int	j;
 
 	i = -1;
@@ -108,13 +109,12 @@ int	valid_chars(t_game *game)
 			if (game->map[i][j] != '1' && game->map[i][j] != '0' && 
 				game->map[i][j] != 'P' && game->map[i][j] != 'C' &&
 				game->map[i][j] != 'E')
-			{
 				error_message(game, "Map does not have only valid chars.\n");
-				return (0);
-			}
 		}
 	}
-	return (1);
+	check_elements(game, 'E');
+	check_elements(game, 'P');
+	check_c(game, 'C');
 }
 
 void	print_map(t_game *game)
