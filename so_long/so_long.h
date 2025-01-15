@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 20:50:00 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:34:58 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_game
 }			t_game;
 
 //parse_map
-void	read_map(char *av, t_game *game);
+t_game	*read_map(char *av, t_game *game);
 void	wall_check(t_game *game);
 int		map_name(char *map);
 

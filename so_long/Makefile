@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:53:04 by karocha-          #+#    #+#              #
-#    Updated: 2025/01/14 20:51:13 by karocha-         ###   ########.fr        #
+#    Updated: 2025/01/15 21:04:47 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,12 @@ clean:
 fclean: clean
 		@make -sC $(LIBFT_PATH) fclean
 		@$(RM) $(NAME)
+
+run: $(NAME)
+	./$(NAME) maps/map1.ber
+
+val: $(NAME)
+	valgrind ./$(NAME) maps/map1.ber
 
 re: fclean all
 

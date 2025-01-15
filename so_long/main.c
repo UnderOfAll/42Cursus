@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:39 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 19:13:30 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:28:56 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char **av)
 	game = NULL;
 	if (ac != 2)
 		error_message(game, "Invalid number of arguments");
-	read_map(av[1], game);
+	game = read_map(av[1], game);
+	free_arr_str(game->map);
+	free(game);
 	return (0);
 }

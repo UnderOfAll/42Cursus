@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 20:50:18 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:33:08 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,23 @@ int	vertical_map(char *str)
 	return (counter);
 }
 
-void	read_map(char *av, t_game *game)
+static	void	check_valid(t_game *game, int i)
+{
+	if (!game->map[0])
+		error_message(game, "Map is empty\n");
+	game->map_y = i - 2;
+	game->map_x = horizontal_map(game->map[0]);
+	wall_check(game);
+	is_rectangle(game);
+	valid_chars(game);
+	doable_map(game);
+}
+
+t_game	*read_map(char *av, t_game *game)
 {
 	int		fd;
 	char	*mapper;
 	int		i;
-
 	if (map_name(av) != 1)
 		error_message(game, "Incorrect file name.\n");
 	i = 0;
@@ -81,20 +92,15 @@ void	read_map(char *av, t_game *game)
 	game = malloc(sizeof(t_game));
 	game->map = malloc(sizeof(char *) * vertical_map(av));
 	if (!game || !game->map)
-		return ;
+		return NULL;
 	mapper = "romario";
 	while (mapper)
 	{
 		mapper = get_next_line(fd);
 		game->map[i++] = mapper;
 	}
-	if (!game->map[0])
-		error_message(game, "Map is empty\n");
-	game->map_y = i - 2;
-	game->map_x = horizontal_map(game->map[0]);
-	wall_check(game);
-	is_rectangle(game);
-	valid_chars(game);
-	doable_map(game);
+	check_valid(game, i);
 	print_map(game);
+	close (fd);
+	return (game);
 }

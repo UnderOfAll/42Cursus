@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:02:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 19:19:48 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:16:02 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	free_arr_str(char **str)
 	int	i;
 
 	i = -1;
+	if (!str || !str[0])
+		return ;
 	while (str[++i])
 		free(str[i]);
 	free(str);

@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:16:53 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 20:57:08 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:18:11 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static	void	check_elements(t_game *game, char c)
 				counter++;
 				get_position(game, x, y, c);
 			}
-			ft_printf("counter:%i\n", counter);
 		}
 	}
 	if (counter != 1)
