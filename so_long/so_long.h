@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 21:34:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:04:46 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_game
 {
 	char	**map;
 	char	*file_map;
+	
+	void 	*mlx;
+	void	*mlx_win;
 
 	void	*bakg;
 	void	*wall;
@@ -73,5 +76,8 @@ void	doable_map(t_game *game);
 void	free_map(t_game *game);
 void	error_message(t_game *game, char *str);
 void	free_arr_str(char **str);
+
+//display
+void	game_start(t_game *game);
 
 #endif

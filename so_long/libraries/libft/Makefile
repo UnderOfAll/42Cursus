@@ -10,7 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c \
+NAME 			= libft.a
+
+OBJ_DIR			= ../../objs/libft
+
+
+LIBFT			=	ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c \
 	ft_split.c ft_strlcat.c ft_strncmp.c ft_substr.c ft_atoi.c ft_isalpha.c \
 	ft_itoa.c ft_memcpy.c  ft_putendl_fd.c ft_strchr.c  ft_strlcpy.c \
 	ft_strnstr.c ft_tolower.c ft_bzero.c   ft_isascii.c ft_memmove.c \
@@ -20,24 +25,33 @@ SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c \
 	ft_printf.c ft_numbase_signed.c ft_numbase_unsigned.c get_next_line.c \
 	get_next_line_utils.c \
 
-OBJS			= $(SRCS:.c=.o)
+LIBFT_OBJS		= $(patsubst %.c, $(OBJ_DIR)%.o, $(LIBFT))
 
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
+CFLAGS			= -Wall -Wextra -Werror
+AR				= ar rcs
 
-NAME			= libft.a
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
-				@ar rcs $(NAME) $(OBJS)
+$(NAME):		$(LIBFT_OBJS)
+				@echo "Creating $(NAME) with objects $(LIBFT_OBJS)"
+				@$(AR) $(NAME) $(LIBFT_OBJS)
+
+$(OBJ_DIR)%.o: %.c
+		@mkdir -p $(@D)
+		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-				$(RM) $(OBJS)
+		@echo "Cleaning object files..."
+		@$(RM) $(LIBFT_OBJS)
+		@echo "Object files cleaned."
 
 fclean:			clean
-				$(RM) $(NAME)
+		@echo "Cleaning library file..."
+		@$(RM) $(NAME)
+		@echo "Library file cleaned."
 
 re:				fclean $(NAME)
 

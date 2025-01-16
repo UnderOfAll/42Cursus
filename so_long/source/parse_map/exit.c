@@ -6,11 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:02:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 21:16:02 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:11:52 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	free_map(t_game *game)
 {

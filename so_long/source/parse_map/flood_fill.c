@@ -6,11 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:50:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 21:34:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:11:54 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 static	char	**copy_map(t_game *game)
 {

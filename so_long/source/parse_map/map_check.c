@@ -6,11 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 21:33:08 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:11:57 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 static	int	is_rectangle(t_game *game)
 {

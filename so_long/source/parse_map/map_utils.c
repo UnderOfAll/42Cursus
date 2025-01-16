@@ -6,11 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 19:34:27 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/14 19:47:39 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:12:00 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int	map_name(char *map)
 {

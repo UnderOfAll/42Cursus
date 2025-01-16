@@ -6,11 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:16:53 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 21:18:11 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:11:55 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 /*int	line_mod(t_game *game, char *line)
 {
