@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:02:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 23:11:52 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:15:42 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,16 @@ void	error_message(t_game *game, char *str)
 		ft_putstr_fd(str, 2);
 	if (!game)
 		exit(0);
-	free_map(game);
-	exit(1);
+	if (game->map)
+		free_map(game);
+	if (game->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+	exit(0);
 }
 
 void	free_arr_str(char **str)

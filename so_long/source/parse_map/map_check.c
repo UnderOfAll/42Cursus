@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:27:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 23:11:57 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:33:40 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ t_game	*read_map(char *av, t_game *game)
 		game->map[i++] = mapper;
 	}
 	check_valid(game, i);
-	print_map(game);
 	close (fd);
 	return (game);
 }

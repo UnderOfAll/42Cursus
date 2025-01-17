@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:02:23 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/17 18:59:05 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:18:27 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ void	game_start(t_game *game)
 	void *mlx = mlx_init();
 	void *mlx_win;
 
-	/* if (mlx == NULL)
+	if (mlx == NULL)
 	{
 		perror("MLX failed");
 		error_message(game, "");
-	} */
+	}
 	mlx_get_screen_size(mlx, &game->screen_x, &game->screen_y);
-	perror("jorge");
 	if (((game->map_x * TILE_SIZE) + 16) > game->screen_y 
 		|| ((game->map_y * TILE_SIZE) + 16) > game->screen_x)
 		error_message(game, "Window can't be larger then the screen.\n");
