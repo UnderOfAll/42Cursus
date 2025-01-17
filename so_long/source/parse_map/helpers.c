@@ -6,33 +6,11 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:16:53 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/15 23:11:55 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:01:05 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-
-/*int	line_mod(t_game *game, char *line)
-{
-	char	**aux;
-	int		i;
-
-	if (!line)
-		return (0);
-	i = -1;
-	game->map_y++;
-	aux = (char **)malloc(sizeof(char *) * (game->map_y + 1));
-	if (!aux)
-		return (0);
-	aux[game->map_y] = NULL; 
-	while (++i < game->map_y - 1)
-		aux[i] = game->map[i];
-	aux[i] = line;
-	if (game->map)
-		free(game->map);
-	game->map = aux;
-	return (1);
-}*/
 
 static	void	get_position(t_game *game, int x, int y, char c)
 {
@@ -114,17 +92,4 @@ void	valid_chars(t_game *game)
 	check_elements(game, 'E');
 	check_elements(game, 'P');
 	check_c(game, 'C');
-}
-
-void	print_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-	{
-		ft_printf("%s", game->map[i]);
-		i++;
-	}
-	ft_printf("\n");
 }

@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:53:04 by karocha-          #+#    #+#              #
-#    Updated: 2025/01/16 00:08:57 by karocha-         ###   ########.fr        #
+#    Updated: 2025/01/16 22:02:41 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,3 +108,5 @@ val: $(NAME)
 	valgrind ./$(NAME) maps/map1.ber
 
 .PHONY: all clean fclean re
+
+#ALL CREDITS OF COLORS AND ECHO MAKEFILE TO MRRIEFF GITHUB FOLLOW HIM https://github.com/MrRieff
