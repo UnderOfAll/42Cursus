@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:39 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/17 18:48:37 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:16:43 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 	game = read_map(av[1], game);
 	init_images(game);
 	game_start(game);
+	mlx_loop(game->mlx);
 	free_arr_str(game->map);
 	free(game);
 }

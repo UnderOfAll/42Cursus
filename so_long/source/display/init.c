@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:02:23 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/17 19:18:27 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:16:36 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static	void	load_images(t_game *game)
 {
 	game->player = mlx_xpm_file_to_image(game->mlx, "images/player.xpm", 
 			&game->player_image_x, &game->player_image_y);
-	if (game->player == NULL)
-		perror("jorge");
 	game->bakg = mlx_xpm_file_to_image(game->mlx, "images/bakg.xpm", 
 			&game->bakg_x, &game->bakg_y);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "images/wall.xpm", 
@@ -38,21 +36,17 @@ static	void	load_images(t_game *game)
 
 void	game_start(t_game *game)
 {
-	void *mlx = mlx_init();
-	void *mlx_win;
+	game->mlx = mlx_init();
 
-	if (mlx == NULL)
-	{
-		perror("MLX failed");
-		error_message(game, "");
-	}
-	mlx_get_screen_size(mlx, &game->screen_x, &game->screen_y);
+	if (game->mlx == NULL)
+		error_message(game, "Mlx failed.\n");
+	mlx_get_screen_size(game->mlx, &game->screen_x, &game->screen_y);
 	if (((game->map_x * TILE_SIZE) + 16) > game->screen_y 
 		|| ((game->map_y * TILE_SIZE) + 16) > game->screen_x)
 		error_message(game, "Window can't be larger then the screen.\n");
-	mlx_win = mlx_new_window(mlx, game->map_x * TILE_SIZE,
+	game->mlx_win = mlx_new_window(game->mlx, game->map_x * TILE_SIZE,
 					game->map_y * TILE_SIZE, "so_long");
-	if (mlx_win == NULL)
+	if (game->mlx_win == NULL)
 		error_message(game, "Impossible to create a window.\n");
 	load_images(game);
 }
