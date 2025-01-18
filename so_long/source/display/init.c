@@ -6,11 +6,26 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:02:23 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/17 20:16:36 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:43:06 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
+
+void	put_moves(t_game *game)
+{
+	char	*moves;
+
+	moves = ft_itoa(game->moves);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall, 0, 0);
+	mlx_string_put(game->mlx, game->mlx_win, 16, 16, 16711680, moves);
+	free(moves);
+}
+
+void	start_moves(t_game *game)
+{
+	mlx_string_put(game->mlx, game->mlx_win, 16, 16, 16711680, "0");
+}
 
 static	void	load_images(t_game *game)
 {
@@ -49,4 +64,6 @@ void	game_start(t_game *game)
 	if (game->mlx_win == NULL)
 		error_message(game, "Impossible to create a window.\n");
 	load_images(game);
+	put_images(game);
+	call_hooks(game);
 }

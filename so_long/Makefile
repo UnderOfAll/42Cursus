@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:53:04 by karocha-          #+#    #+#              #
-#    Updated: 2025/01/17 20:14:03 by karocha-         ###   ########.fr        #
+#    Updated: 2025/01/18 12:54:41 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ PARSER			= $(PARSER_DIR)exit.c\
 					$(PARSER_DIR)map_utils.c\
 
 DISPLAY			= $(DISPLAY_DIR)init.c\
-					
+					$(DISPLAY_DIR)put_images.c\
+					$(DISPLAY_DIR)call_hooks.c\
 					
 #SOURCE (files to add)
 SRCS = $(MAIN_DIR) $(PARSER) $(DISPLAY)
@@ -101,10 +102,10 @@ fclean: clean
 
 re: fclean all
 
-run: $(NAME)
+run: all
 	./$(NAME) maps/map1.ber
 
-val: $(NAME)
+val: all
 	valgrind ./$(NAME) maps/map1.ber
 
 .PHONY: all clean fclean re

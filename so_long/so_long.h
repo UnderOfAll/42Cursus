@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/17 18:58:49 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:42:58 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libraries/libft/libft.h"
 # include "libraries/minilibx/mlx.h"
+# include "libraries/minilibx/mlx_int.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdint.h>
@@ -96,5 +97,9 @@ void	free_arr_str(char **str);
 
 //display
 void	game_start(t_game *game);
+void	put_images(t_game *game);
+void	start_moves(t_game *game);
+void	put_moves(t_game *game);
+void	call_hooks(t_game *game);
 
 #endif
