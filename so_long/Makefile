@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:53:04 by karocha-          #+#    #+#              #
-#    Updated: 2025/01/18 12:54:41 by karocha-         ###   ########.fr        #
+#    Updated: 2025/01/18 15:34:58 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLX_OBJ_DIR 	= $(OBJ_DIR)minilibx/
 #LIBRARIES
 LIB_DIR			= libraries/
 LIBFT_DIR		= $(LIB_DIR)libft/
-MLX_DIR		= $(LIB_DIR)minilibx/
+MLX_DIR			= $(LIB_DIR)minilibx/
 
 #PATHS
 MAIN_DIR		= $(SRC_DIR)so_long.c
