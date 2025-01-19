@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:02:45 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/18 15:17:03 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:08:21 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static	void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit_open);
 	if (game->player)
 		mlx_destroy_image(game->mlx, game->player);
+	if (game->player2)
+		mlx_destroy_image(game->mlx, game->player2);
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
 }

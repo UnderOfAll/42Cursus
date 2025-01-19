@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:42 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/18 12:42:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:07:46 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ typedef struct s_game
 	void	*bakg;
 	void	*wall;
 	void	*player;
+	void	*player2;
 	void	*collectable;
 	void	*exit_open;
 	void	*exit_closed;
 
 	int		player_image_x;
 	int		player_image_y;
+	int		player_image2_x;
+	int		player_image2_y;
 
 	int		bakg_x;
 	int		bakg_y;

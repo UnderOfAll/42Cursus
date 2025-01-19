@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:06:39 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/18 11:56:30 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:07:20 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static	void	init_images(t_game *game)
 	game->exit_closed_y = TILE_SIZE;
 	game->player_image_x = TILE_SIZE;
 	game->player_image_y = TILE_SIZE;
+	game->player_image2_x = TILE_SIZE;
+	game->player_image2_y = TILE_SIZE;
 }
 
 int	main(int ac, char **av)

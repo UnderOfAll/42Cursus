@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 11:49:46 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/18 15:06:10 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:10:17 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ static	int	key_press(int key, t_game *game)
 		game->player_x++;
 	game->map[game->player_y][game->player_x] = 'P';
 	ft_printf("Moves %d\n", game->moves++);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, 
+	if (game->nb_collectable != 0)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, 
+			game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
+	else
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->player2, 
 			game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
 	return (0);
 }

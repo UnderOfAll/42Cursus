@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:02:23 by karocha-          #+#    #+#             */
-/*   Updated: 2025/01/18 12:43:06 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:09:36 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static	void	load_images(t_game *game)
 {
 	game->player = mlx_xpm_file_to_image(game->mlx, "images/player.xpm", 
 			&game->player_image_x, &game->player_image_y);
+	game->player2 = mlx_xpm_file_to_image(game->mlx, "images/player2.xpm", 
+			&game->player_image2_x, &game->player_image2_y);
 	game->bakg = mlx_xpm_file_to_image(game->mlx, "images/bakg.xpm", 
 			&game->bakg_x, &game->bakg_y);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "images/wall.xpm", 
@@ -45,7 +47,7 @@ static	void	load_images(t_game *game)
 			&game->exit_closed_y);
 	if (game->player == NULL || game->bakg == NULL || game->wall == NULL 
 			|| game->collectable == NULL || game->exit_open == NULL 
-			|| game->exit_closed == NULL)
+			|| game->exit_closed == NULL || game->player2 == NULL)
 			error_message(game, "Failed to load images.\n");
 }
 
