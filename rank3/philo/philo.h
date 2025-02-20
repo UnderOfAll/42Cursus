@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:59:08 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/17 19:07:01 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:47:55 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,26 @@ typedef	struct	s_table
 	int				dead;
 	
 	t_philos		*philos;
+
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+	pthread_mutex_t	reaper;
+	pthread_mutex_t	ate;
+	
 	time_t			start;
 }				t_table;
 
 //Helpers
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
-void	ft_putstr_fd(char *s, int fd);
-void	*ft_calloc(size_t nmemb, size_t size);
+size_t		ft_strlen(const char *str);
+void		ft_putstr_fd(char *s, int fd);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 //Parser
-int		parser(char **av);
+int			parser(char **av);
+long		ft_atoi(const char *str);
 
 //Init
-void    init_table(t_table *table, int ac, char ** av);
-int		init_philos(table);
+void    	init_table(t_table *table, int ac, char ** av);
+int			init_philos(t_table *table);
 
 #endif

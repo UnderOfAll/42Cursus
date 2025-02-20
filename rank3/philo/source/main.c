@@ -6,11 +6,25 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:07:22 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/17 19:09:53 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:47:06 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+static	void	exit_program(t_table *table)
+{
+	int	i;
+
+	i = -1;
+	pthread_mutex_destroy(&table->print);
+	pthread_mutex_destroy(&table->reaper);
+	pthread_mutex_destroy(&table->ate);
+	while(table->n_philos > ++i)
+		pthread_mutex_destroy(&table->forks[i]);
+	free(table->forks);
+	free(table->philos);
+}
 
 int	main(int ac, char **av)
 {
@@ -25,5 +39,6 @@ int	main(int ac, char **av)
 	if (!init_philos(table))
 		return (1);
 	printf("good\n");
+	exit_program(table);
 	return (0);
 }

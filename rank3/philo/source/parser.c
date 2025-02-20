@@ -6,11 +6,30 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:26:04 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/17 17:12:21 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:47:32 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+long	ft_atoi(const char *str)
+{
+	size_t	i;
+	size_t	res;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + str[i++] - '0';
+	return (res * sign);
+}
 
 static	int	str_nb_only(char *str)
 {
