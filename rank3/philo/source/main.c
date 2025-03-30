@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:07:22 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/20 17:47:06 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:29:20 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,23 @@ static	void	exit_program(t_table *table)
 		pthread_mutex_destroy(&table->forks[i]);
 	free(table->forks);
 	free(table->philos);
+	free(table);
 }
 
 int	main(int ac, char **av)
 {
 	t_table	*table;
 
-	table = NULL;
+	table = ft_calloc(sizeof(t_table), 1);
+	if (!table)
+		return (0);
 	if (ac != 5 && ac != 6)
 		return (ft_putstr_fd("Wrong number of arguments\n", 2), 1);
 	if (parser(av))
-		return (1);
+		return (free(table), 0);
 	init_table(table, ac, av);
 	if (!init_philos(table))
-		return (1);
+		return (free(table), 0);
 	printf("good\n");
 	exit_program(table);
 	return (0);

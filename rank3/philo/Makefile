@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:21:18 by karocha-          #+#    #+#              #
-#    Updated: 2025/02/17 18:55:20 by karocha-         ###   ########.fr        #
+#    Updated: 2025/03/17 21:43:39 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ OBJ_DIR	=	obj/
 SRC 	=	main.c \
 			parser.c \
 			helpers.c \
-			init.c
+			helpers2.c \
+			init.c \
+			routine.c
 OBJ		=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 #COLORS

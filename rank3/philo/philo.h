@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:59:08 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/20 17:47:55 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/03/30 21:06:14 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef	struct	s_table
 	int				n_to_eat;
 
 	int				dead;
+	int				warn;
 	
 	t_philos		*philos;
 
@@ -55,6 +56,9 @@ typedef	struct	s_table
 size_t		ft_strlen(const char *str);
 void		ft_putstr_fd(char *s, int fd);
 void		*ft_calloc(size_t nmemb, size_t size);
+time_t		time_in_ms(void);
+void		output_event(t_table *table, int type);
+void		ft_eat(t_table *table);
 
 //Parser
 int			parser(char **av);
