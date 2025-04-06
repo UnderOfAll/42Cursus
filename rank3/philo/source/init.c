@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 18:53:57 by karocha-          #+#    #+#             */
-/*   Updated: 2025/03/30 12:41:13 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:48:56 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_philos(t_table *table)
 		table->philos[i].index = i + 1;
 		table->philos[i].last_time_eaten = 0;
 		table->philos[i].n_ate = 0;
+		table->philos[i].table = table;
 		pthread_mutex_init(&table->forks[i], NULL);
 	}
 	return (1);

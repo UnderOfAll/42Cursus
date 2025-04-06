@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:33:55 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/20 17:41:34 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:57:35 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,17 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	while (++i < len)
 		((unsigned char *)arr)[i] = '\0';
 	return (arr);
+}
+
+void	better_usleep(long ms, t_table *table)
+{
+	long start;
+
+	start = time_in_ms();
+	while ((time_in_ms() - start) < ms)
+	{
+		if (should_stop(table))
+			break;
+		usleep(100);
+	}
 }

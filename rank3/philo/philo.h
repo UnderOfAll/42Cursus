@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:59:08 by karocha-          #+#    #+#             */
-/*   Updated: 2025/03/30 21:06:14 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:35:29 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@
 
 #define P_MAX 250
 
+typedef	struct	s_table	t_table;
+
 typedef struct	s_philos
 {
 	pthread_t		thread;
 	int				index;
 	int				last_time_eaten;
 	int				n_ate;
+	t_table			*table;
 }				t_philos;
 
 typedef	struct	s_table
@@ -59,6 +62,9 @@ void		*ft_calloc(size_t nmemb, size_t size);
 time_t		time_in_ms(void);
 void		output_event(t_table *table, int type);
 void		ft_eat(t_table *table);
+int			should_stop(t_table *table);
+int			philo_loop(t_table *table);
+void		better_usleep(long ms, t_table *table);
 
 //Parser
 int			parser(char **av);
@@ -67,5 +73,15 @@ long		ft_atoi(const char *str);
 //Init
 void    	init_table(t_table *table, int ac, char ** av);
 int			init_philos(t_table *table);
+
+//Routine
+void		do_sleep(t_table *table);
+void		eat(t_table *table);
+void		think(t_table *table);
+void		*alone(t_table *table);
+void		*routine(void *arg);
+
+//Threads
+void		threads(t_table *table);
 
 #endif

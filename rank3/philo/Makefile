@@ -6,7 +6,7 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:21:18 by karocha-          #+#    #+#              #
-#    Updated: 2025/03/17 21:43:39 by karocha-         ###   ########.fr        #
+#    Updated: 2025/04/04 19:57:16 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC 	=	main.c \
 			helpers.c \
 			helpers2.c \
 			init.c \
-			routine.c
+			routine.c \
+			threads.c 
 OBJ		=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 #COLORS

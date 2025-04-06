@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:07:22 by karocha-          #+#    #+#             */
-/*   Updated: 2025/03/17 21:29:20 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:44:58 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	void	exit_program(t_table *table)
 
 int	main(int ac, char **av)
 {
-	t_table	*table;
+	static t_table	*table;
 
 	table = ft_calloc(sizeof(t_table), 1);
 	if (!table)
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 	init_table(table, ac, av);
 	if (!init_philos(table))
 		return (free(table), 0);
+	threads(table);
 	printf("good\n");
 	exit_program(table);
 	return (0);
