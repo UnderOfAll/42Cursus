@@ -6,81 +6,77 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:41:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/06 20:01:27 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:15:34 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	do_sleep(t_table *table)
+void	do_sleep(t_philos *philos)
 {
-	output_event(table, 2);
-	better_usleep(table->time_to_sleep * 850, table);
+	output_event(philos, 2);
+	usleep(table()->time_to_sleep * 850);
 }
 
-void	eat(t_table *table)
+void	eat(t_philos *philos)
 {
-	if (table->philos->index == table->n_philos)
+	if (philos->index == table()->n_philos)
 	{
-		pthread_mutex_lock(&table->forks[0]);
-		pthread_mutex_lock(&table->forks[table->philos->index - 1]);
+		pthread_mutex_lock(&table()->forks[0]);
+		pthread_mutex_lock(&table()->forks[philos->index - 1]);
 	}
 	else
 	{
-		pthread_mutex_lock(&table->forks[table->philos->index - 1]);
-		pthread_mutex_lock(&table->forks[table->philos->index]);
+		pthread_mutex_lock(&table()->forks[philos->index - 1]);
+		pthread_mutex_lock(&table()->forks[philos->index]);
 	}
-	ft_eat(table);
-	if (table->philos->index == table->n_philos)
+	ft_eat(philos);
+	if (philos->index == table()->n_philos)
     {
-        pthread_mutex_unlock(&table->forks[table->philos->index - 1]);
-        pthread_mutex_unlock(&table->forks[0]);
+        pthread_mutex_unlock(&table()->forks[philos->index - 1]);
+        pthread_mutex_unlock(&table()->forks[0]);
     }
     else
     {
-        pthread_mutex_unlock(&table->forks[table->philos->index]);
-        pthread_mutex_unlock(&table->forks[table->philos->index - 1]);
+        pthread_mutex_unlock(&table()->forks[philos->index]);
+        pthread_mutex_unlock(&table()->forks[philos->index - 1]);
     }
 }
 
-void	think(t_table *table)
+void	think(t_philos *philos)
 {
-	output_event(table, 3);
+	output_event(philos, 3);
 }
 
-void	*alone(t_table *table)
+static void	alone(t_philos *philos)
 {
 	int	i;
 
-	i = table->philos->index - 1;
-	pthread_mutex_lock(&table->forks[i]);
-	pthread_mutex_lock(&table->reaper);
-	output_event(table, 0);
-	table->dead = 1;
-	pthread_mutex_unlock(&table->forks[i]);
-	pthread_mutex_unlock(&table->reaper);
-	better_usleep(table->time_to_die * 850, table);
-	output_event(table, 4);
-	return (NULL);
+	i = philos->index - 1;
+	pthread_mutex_lock(&table()->forks[i]);
+	output_event(philos, 0);
+	pthread_mutex_unlock(&table()->forks[i]);
+	usleep(table()->time_to_die * 850);
+	output_event(philos, 4);
 }
 
 void	*routine(void *arg)
 {
 	t_philos	*philos;
-	t_table		*table;
 
 	philos = (t_philos *)arg;
-	table = philos->table;
-	if (table->n_philos == 1)
-		return (alone(table));
+	if (table()->n_philos == 1)
+	{
+		alone(philos);
+		return (NULL);
+	}
 	if (philos->index % 2 != 0)
-		better_usleep(table->time_to_eat / 2, table);
+		usleep(table()->n_philos * 850);
 	while (1)
 	{
-		philo_loop(table);
-		if (should_stop(table))
-			break ;
-		better_usleep(100, table);
+		usleep(100);
+		if (!philo_loop(philos))
+			return (NULL);
 	}
 	return (NULL);
 }

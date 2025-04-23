@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:43:07 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/06 19:52:17 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:10:14 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ time_t	time_in_ms(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	output_event(t_table *table, int type)
+void	output_event(t_philos *philos, int type)
 {
 	long	i;
 
-	i = time_in_ms() - table->start;
-
-	pthread_mutex_lock(&table->print);
-	pthread_mutex_lock(&table->reaper);
-	pthread_mutex_lock(&table->ate);
-	if (!table->dead && !table->warn)
+	pthread_mutex_lock(&table()->print);
+	i = time_in_ms() - table()->start;
+	pthread_mutex_lock(&table()->reaper);
+	pthread_mutex_lock(&table()->ate);
+	if (!table()->dead && !table()->warn)
 	{
-		printf("%ld, %d ", i, table->philos->index);
+		printf("%ld, %d ", i, philos->index);
 		if (type == 0)
 			printf("took a fork\n");
 		else if (type == 1)
@@ -44,45 +43,56 @@ void	output_event(t_table *table, int type)
 		else if (type == 4)
 			printf("it's dead\n");			
 	}
-	pthread_mutex_unlock(&table->print);
-	pthread_mutex_unlock(&table->reaper);
-	pthread_mutex_unlock(&table->ate);
+	pthread_mutex_unlock(&table()->print);
+	pthread_mutex_unlock(&table()->reaper);
+	pthread_mutex_unlock(&table()->ate);
 }
 
-void	ft_eat(t_table *table)
+void	ft_eat(t_philos *philos)
 {
-	output_event(table, 0);
-	output_event(table, 0);
-	output_event(table, 1);
-	pthread_mutex_lock(&table->ate);
-	table->philos->last_time_eaten = (time_in_ms() - table->start);
-	table->philos->n_ate++;
-	pthread_mutex_unlock(&table->ate);
-	better_usleep(table->time_to_eat * 850, table);
+	output_event(philos, 0);
+	output_event(philos, 0);
+	output_event(philos, 1);
+	pthread_mutex_lock(&table()->ate);
+	philos->last_time_eaten = (time_in_ms() - table()->start);
+	philos->n_ate++;
+	pthread_mutex_unlock(&table()->ate);
+	usleep(table()->time_to_eat * 850);
 }
 
-int	should_stop(t_table *table)
+int	philo_loop(t_philos *philos)
 {
-	int	stop;
-
-	pthread_mutex_lock(&table->reaper);
-	pthread_mutex_lock(&table->ate);
-	stop = table->dead || table->warn;
-	pthread_mutex_unlock(&table->reaper);
-	pthread_mutex_unlock(&table->ate);
-	return(stop);
-}
-
-int	philo_loop(t_table *table)
-{
-	if (should_stop(table))
+	pthread_mutex_lock(&table()->reaper);
+	pthread_mutex_lock(&table()->ate);
+	if (table()->dead || table()->warn)
+	{
+		pthread_mutex_unlock(&table()->reaper);
+		pthread_mutex_unlock(&table()->ate);
 		return (0);
-	eat(table);
-	if (should_stop(table))
-		return (0);
-	do_sleep(table);
-	if (should_stop(table))
-		return (0);
-	think(table);
+	}
+	pthread_mutex_unlock(&table()->reaper);
+	pthread_mutex_unlock(&table()->ate);
+	eat(philos);
+	do_sleep(philos);
+	think(philos);
 	return (1);
 }
+
+/*void	print_allinfo(int i)
+{
+	printf("Number of philosophers: %d\n", table()->n_philos);
+	printf("Philosopher ID: %d\n", table()->philos[i].index);
+	printf("Time to die: %d ms\n", table()->time_to_die);
+	printf("Time to eat: %d ms\n", table()->time_to_eat);
+	printf("Time to sleep: %d ms\n", table()->time_to_sleep);
+	if (table()->dead == 1)
+		printf("Is dead: yes is dead\n");
+	else
+		printf("is alive\n");
+	if (table()->n_to_eat > 0)
+		printf("Number of times each philosopher must eat: %d\n",
+			table()->n_to_eat);
+	printf("Number of times eaten: %d\n", table()->philos[i].n_ate);
+	printf("Start time: %ld\n", table()->start);
+	printf("\n");
+}*/

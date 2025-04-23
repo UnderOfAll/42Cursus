@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:26:04 by karocha-          #+#    #+#             */
-/*   Updated: 2025/02/20 17:47:32 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:47:04 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static	int	str_nb_only(char *str)
 	return (0);
 }
 
-int	parser(char **av)
+int	parser(int ac, char **av)
 {
+	if (ac != 5 && ac != 6)
+		return (ft_putstr_fd("Wrong number of arguments\n", 2), 0);
 	if (str_nb_only(av[1]) || str_nb_only(av[2]) || str_nb_only(av[3])
 		|| str_nb_only(av[4]) || (av[5] && str_nb_only(av[5])))
 		return (ft_putstr_fd("Some of the arguments is not a number\n", 2), 1);

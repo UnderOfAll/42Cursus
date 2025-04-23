@@ -6,86 +6,91 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:56:43 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/06 19:40:53 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:08:41 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static void	apocalipse(t_table *table)
+static void	apocalipse(int i)
 {
-	pthread_mutex_lock(&table->reaper);
-	if (!table->dead)
+	pthread_mutex_lock(&table()->reaper);
+	pthread_mutex_lock(&table()->ate);
+	if (!table()->dead || table()->warn)
 	{
-		table->dead = 1;
-		output_event(table, 4);
+		pthread_mutex_unlock(&table()->reaper);
+		pthread_mutex_unlock(&table()->ate);
+		return ;
 	}
-	pthread_mutex_unlock(&table->reaper);
+	table()->dead = 1;
+	printf("%ld, %d it's dead\n", 
+		(time_in_ms() - table()->start), table()->philos[i].index);
+	pthread_mutex_unlock(&table()->reaper);
+	pthread_mutex_unlock(&table()->ate);
 }
 
-static void	meal_check(t_table *table)
+static void	meal_check(void)
 {
 	int	i;
-	int	full;
 
-	if (table->n_to_eat == 0)
-		return ;
-	full = 1;
 	i = -1;
-	while (++i < table->n_philos)
+	while (++i < table()->n_philos)
 	{
-		pthread_mutex_lock(&table->ate);
-		if (table->philos[i].n_ate < table->n_to_eat)
-			full = 0;
-		pthread_mutex_unlock(&table->ate);
-		if (!full)
-			break;
+		pthread_mutex_lock(&table()->ate);
+		if (table()->philos[i].n_ate < table()->n_to_eat)
+		{
+			pthread_mutex_unlock(&table()->ate);
+			return ;
+		}
+		pthread_mutex_unlock(&table()->ate);
+		i++;
 	}
-	if (full)
-	{
-		pthread_mutex_lock(&table->ate);
-		table->warn = 1;
-		pthread_mutex_unlock(&table->ate);
-	}
+	pthread_mutex_lock(&table()->ate);
+	table()->warn = 1;
+	pthread_mutex_unlock(&table()->ate);
 }
 
-static void	health_monitor(t_table *table)
+static void	health_monitor(void)
 {
 	int		i;
 	time_t	current;
 
-	while (!should_stop(table))
+	while (!table()->dead && !table()->warn)
 	{
 		i = -1;
-		while (++i < table->n_philos && should_stop(table))
+		while (++i < table()->n_philos)
 		{
-			current = time_in_ms();
-			pthread_mutex_lock(&table->ate);
-			if (current - table->philos[i].last_time_eaten > table->time_to_die)
+			current = time_in_ms() - table()->start;
+			pthread_mutex_lock(&table()->ate);
+			if (current >= (table()->philos[i].last_time_eaten + table()->time_to_die))
 			{
-				pthread_mutex_unlock(&table->ate);
-				apocalipse(table);
+				pthread_mutex_unlock(&table()->ate);
+				apocalipse(i);
 				break ;
 			}
-			pthread_mutex_unlock(&table->ate);
+			else
+				pthread_mutex_unlock(&table()->ate);
+			i++;
 		}
-		meal_check(table);
-		better_usleep(850, table);
+		if (table()->n_to_eat)
+			meal_check();
 	}
 }
 
-void	threads(t_table *table)
+void	threads(void)
 {
 	int	i;
 
 	i = -1;
-	while (++i < table->n_philos)
-		if (pthread_create(&table->philos[i].thread, NULL, &routine,
-			&table->philos[i]))
+	/*print_allinfo(3);*/
+	while (++i < table()->n_philos)
+		if (pthread_create(&table()->philos[i].thread, NULL, &routine,
+				(void *)&table()->philos[i]))
 			return ;
-	if (table->n_philos > 1)
-		health_monitor(table);
+	if (table()->n_philos > 1)
+		health_monitor();
 	i = -1;
-	while(++i < table->n_philos)
-		pthread_join(table->philos[i].thread, NULL);
+	while(++i < table()->n_philos)
+		if (pthread_join(table()->philos[i].thread, NULL))
+			return ;
 }

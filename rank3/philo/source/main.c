@@ -6,43 +6,44 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:07:22 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/06 19:44:58 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:44:19 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static	void	exit_program(t_table *table)
+/*need this bad boy here, because the prototype of the function routine doesnt
+allow me to transfer the table content through t_table *table like i normally
+would*/
+t_table	*table(void)
+{
+	static t_table	table;
+
+	return (&table);
+}
+
+static	void	exit_program()
 {
 	int	i;
 
 	i = -1;
-	pthread_mutex_destroy(&table->print);
-	pthread_mutex_destroy(&table->reaper);
-	pthread_mutex_destroy(&table->ate);
-	while(table->n_philos > ++i)
-		pthread_mutex_destroy(&table->forks[i]);
-	free(table->forks);
-	free(table->philos);
-	free(table);
+	pthread_mutex_destroy(&table()->print);
+	pthread_mutex_destroy(&table()->reaper);
+	pthread_mutex_destroy(&table()->ate);
+	while(table()->n_philos > ++i)
+		pthread_mutex_destroy(&table()->forks[i]);
+	free(table()->forks);
+	free(table()->philos);
 }
 
 int	main(int ac, char **av)
 {
-	static t_table	*table;
-
-	table = ft_calloc(sizeof(t_table), 1);
-	if (!table)
+	if (parser(ac, av))
 		return (0);
-	if (ac != 5 && ac != 6)
-		return (ft_putstr_fd("Wrong number of arguments\n", 2), 1);
-	if (parser(av))
-		return (free(table), 0);
-	init_table(table, ac, av);
-	if (!init_philos(table))
-		return (free(table), 0);
-	threads(table);
-	printf("good\n");
-	exit_program(table);
+	init_table(ac, av);
+	if (!init_philos())
+		return (0);
+	threads();
+	exit_program();
 	return (0);
 }

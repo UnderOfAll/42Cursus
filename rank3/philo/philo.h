@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:59:08 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/06 19:35:29 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:08:07 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,34 @@ typedef	struct	s_table
 	time_t			start;
 }				t_table;
 
+t_table		*table(void);
+
 //Helpers
 size_t		ft_strlen(const char *str);
 void		ft_putstr_fd(char *s, int fd);
 void		*ft_calloc(size_t nmemb, size_t size);
 time_t		time_in_ms(void);
-void		output_event(t_table *table, int type);
-void		ft_eat(t_table *table);
-int			should_stop(t_table *table);
-int			philo_loop(t_table *table);
-void		better_usleep(long ms, t_table *table);
+void		output_event(t_philos *philos, int type);
+void		ft_eat(t_philos *philos);
+int			philo_loop(t_philos *philos);
 
 //Parser
-int			parser(char **av);
+int			parser(int ac, char **av);
 long		ft_atoi(const char *str);
 
 //Init
-void    	init_table(t_table *table, int ac, char ** av);
-int			init_philos(t_table *table);
+void    	init_table(int ac, char ** av);
+int			init_philos(void);
 
 //Routine
-void		do_sleep(t_table *table);
-void		eat(t_table *table);
-void		think(t_table *table);
-void		*alone(t_table *table);
+void		do_sleep(t_philos *philos);
+void		eat(t_philos *philos);
+void		think(t_philos *philos);
 void		*routine(void *arg);
 
 //Threads
-void		threads(t_table *table);
+void		threads(void);
+
+/*void		print_allinfo(int i);*/
 
 #endif
