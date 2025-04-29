@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:56:43 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/23 14:08:41 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/29 03:27:07 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	apocalipse(int i)
 {
 	pthread_mutex_lock(&table()->reaper);
 	pthread_mutex_lock(&table()->ate);
-	if (!table()->dead || table()->warn)
+	if (table()->dead || table()->warn)
 	{
 		pthread_mutex_unlock(&table()->reaper);
 		pthread_mutex_unlock(&table()->ate);
@@ -62,7 +62,7 @@ static void	health_monitor(void)
 		{
 			current = time_in_ms() - table()->start;
 			pthread_mutex_lock(&table()->ate);
-			if (current >= (table()->philos[i].last_time_eaten + table()->time_to_die))
+			if (current >= ((table()->philos)[i].last_time_eaten + table()->time_to_die))
 			{
 				pthread_mutex_unlock(&table()->ate);
 				apocalipse(i);
@@ -73,7 +73,9 @@ static void	health_monitor(void)
 			i++;
 		}
 		if (table()->n_to_eat)
+		{
 			meal_check();
+		}
 	}
 }
 
@@ -87,6 +89,7 @@ void	threads(void)
 		if (pthread_create(&table()->philos[i].thread, NULL, &routine,
 				(void *)&table()->philos[i]))
 			return ;
+	
 	if (table()->n_philos > 1)
 		health_monitor();
 	i = -1;

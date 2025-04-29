@@ -6,13 +6,13 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 18:53:57 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/23 13:25:34 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/04/29 03:12:54 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	init_table(int ac, char ** av)
+void	init_table(int ac, char **av)
 {
 	table()->n_philos = ft_atoi(av[1]);
 	table()->time_to_die = ft_atoi(av[2]);
