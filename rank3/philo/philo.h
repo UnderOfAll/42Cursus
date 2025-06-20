@@ -6,26 +6,27 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:59:08 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/23 14:08:07 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:40:38 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <sys/time.h>
-#include <pthread.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdint.h>
+# include <sys/time.h>
+# include <pthread.h>
+# include <limits.h>
 
-#define P_MAX 250
+# define P_MAX 250
 
-typedef	struct	s_table	t_table;
+typedef struct s_table	t_table;
 
-typedef struct	s_philos
+typedef struct s_philos
 {
 	pthread_t		thread;
 	int				index;
@@ -34,7 +35,7 @@ typedef struct	s_philos
 	t_table			*table;
 }				t_philos;
 
-typedef	struct	s_table
+typedef struct s_table
 {
 	int				n_philos;
 	int				time_to_die;
@@ -44,14 +45,14 @@ typedef	struct	s_table
 
 	int				dead;
 	int				warn;
-	
+
 	t_philos		*philos;
 
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	reaper;
 	pthread_mutex_t	ate;
-	
+
 	time_t			start;
 }				t_table;
 
@@ -71,7 +72,7 @@ int			parser(int ac, char **av);
 long		ft_atoi(const char *str);
 
 //Init
-void    	init_table(int ac, char ** av);
+void		init_table(int ac, char **av);
 int			init_philos(void);
 
 //Routine

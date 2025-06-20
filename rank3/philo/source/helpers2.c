@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:43:07 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/29 03:29:24 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:41:03 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 time_t	time_in_ms(void)
 {
-	struct	timeval	time;
+	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
 		return (ft_putstr_fd("Error getting time\n", 2), 0);
@@ -41,7 +41,7 @@ void	output_event(t_philos *philos, int type)
 		else if (type == 3)
 			printf("thinking..\n");
 		else if (type == 4)
-			printf("it's dead\n");			
+			printf("it's dead\n");
 	}
 	pthread_mutex_unlock(&table()->print);
 	pthread_mutex_unlock(&table()->reaper);

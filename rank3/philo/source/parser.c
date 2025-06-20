@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:26:04 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/23 13:47:04 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:01:24 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static	int	str_nb_only(char *str)
 	int	i;
 
 	i = -1;
-	while (str[++i])
+	if (!str)
+		return (1);
+	while (str && str[++i])
 		if (str[i] < '0' || str[i] > '9')
 			return (1);
 	return (0);
@@ -44,21 +46,22 @@ static	int	str_nb_only(char *str)
 
 int	parser(int ac, char **av)
 {
-	if (ac != 5 && ac != 6)
-		return (ft_putstr_fd("Wrong number of arguments\n", 2), 0);
-	if (str_nb_only(av[1]) || str_nb_only(av[2]) || str_nb_only(av[3])
-		|| str_nb_only(av[4]) || (av[5] && str_nb_only(av[5])))
-		return (ft_putstr_fd("Some of the arguments is not a number\n", 2), 1);
-	if (ft_atoi(av[1]) > P_MAX || ft_atoi(av[1]) <= 0
-		|| str_nb_only(av[1]))
-		return (ft_putstr_fd("Please, atleast 1 philo and max 250;-;\n",2), 1);
-	if (ft_atoi(av[2]) <= 0 || str_nb_only(av[2]))
-		return (ft_putstr_fd("Time to die has to be atleast 1\n", 2), 1);
-	if (ft_atoi(av[3]) <= 0 || str_nb_only(av[3]))
-		return (ft_putstr_fd("Time to eat has to be atleast 1\n", 2), 1);
-	if (ft_atoi(av[4]) <= 0 || str_nb_only(av[4]))
-		return (ft_putstr_fd("Time to sleep has to be atleast 1\n", 2), 1);
-	if (av[5] && (ft_atoi(av[5]) <= 0 || str_nb_only(av[5])))
-		return (ft_putstr_fd("Invalid number of times each philo eat\n", 2), 1);
+	int	i;
+
+	i = 0;
+	if (ac < 5 || ac > 6)
+	{
+		write(2, "Error: Invalid number of arguments.\n", 35);
+		return (1);
+	}
+	while (av[++i])
+	{
+		if (str_nb_only(av[i]) || ft_atoi(av[i]) > INT_MAX
+			|| ft_atoi(av[i]) < INT_MIN || ft_atoi(av[i]) <= 0)
+		{
+			write(2, "Error: Arguments must be numbers.\n", 34);
+			return (1);
+		}
+	}
 	return (0);
 }

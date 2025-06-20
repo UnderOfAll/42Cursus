@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:56:43 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/29 03:27:07 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:42:19 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	apocalipse(int i)
 		return ;
 	}
 	table()->dead = 1;
-	printf("%ld, %d it's dead\n", 
+	printf("%ld, %d it's dead\n",
 		(time_in_ms() - table()->start), table()->philos[i].index);
 	pthread_mutex_unlock(&table()->reaper);
 	pthread_mutex_unlock(&table()->ate);
@@ -62,7 +62,8 @@ static void	health_monitor(void)
 		{
 			current = time_in_ms() - table()->start;
 			pthread_mutex_lock(&table()->ate);
-			if (current >= ((table()->philos)[i].last_time_eaten + table()->time_to_die))
+			if (current >= ((table()->philos)[i].last_time_eaten
+				+ table()->time_to_die))
 			{
 				pthread_mutex_unlock(&table()->ate);
 				apocalipse(i);
@@ -73,9 +74,7 @@ static void	health_monitor(void)
 			i++;
 		}
 		if (table()->n_to_eat)
-		{
 			meal_check();
-		}
 	}
 }
 
@@ -84,16 +83,14 @@ void	threads(void)
 	int	i;
 
 	i = -1;
-	/*print_allinfo(3);*/
 	while (++i < table()->n_philos)
 		if (pthread_create(&table()->philos[i].thread, NULL, &routine,
 				(void *)&table()->philos[i]))
 			return ;
-	
 	if (table()->n_philos > 1)
 		health_monitor();
 	i = -1;
-	while(++i < table()->n_philos)
+	while (++i < table()->n_philos)
 		if (pthread_join(table()->philos[i].thread, NULL))
 			return ;
 }

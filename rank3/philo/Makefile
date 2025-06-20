@@ -6,13 +6,13 @@
 #    By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:21:18 by karocha-          #+#    #+#              #
-#    Updated: 2025/04/04 19:57:16 by karocha-         ###   ########.fr        #
+#    Updated: 2025/06/20 20:37:30 by karocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 CC		=	@cc
-CFLAGS	=	-Wall -Wextra -Werror -pthread
+CFLAGS	=	-Wall -Wextra -Werror -pthread -fsanitize=thread -g -o -lpthread
 
 SOURCE	=	source/
 OBJ_DIR	=	obj/

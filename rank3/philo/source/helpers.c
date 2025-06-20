@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:33:55 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/21 18:22:40 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:40:09 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
@@ -29,6 +30,7 @@ void	ft_putstr_fd(char *s, int fd)
 	while (s[++i])
 		write(fd, &s[i], 1);
 }
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*arr;

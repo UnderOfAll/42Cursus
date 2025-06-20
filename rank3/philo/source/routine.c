@@ -6,7 +6,7 @@
 /*   By: karocha- <karocha-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:41:16 by karocha-          #+#    #+#             */
-/*   Updated: 2025/04/29 03:29:48 by karocha-         ###   ########.fr       */
+/*   Updated: 2025/06/20 20:41:27 by karocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	eat(t_philos *philos)
 	}
 	ft_eat(philos);
 	if (philos->index == table()->n_philos)
-    {
-        pthread_mutex_unlock(&table()->forks[philos->index - 1]);
-        pthread_mutex_unlock(&table()->forks[0]);
-    }
-    else
-    {
-        pthread_mutex_unlock(&table()->forks[philos->index]);
-        pthread_mutex_unlock(&table()->forks[philos->index - 1]);
-    }
+	{
+		pthread_mutex_unlock(&table()->forks[philos->index - 1]);
+		pthread_mutex_unlock(&table()->forks[0]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&table()->forks[philos->index]);
+		pthread_mutex_unlock(&table()->forks[philos->index - 1]);
+	}
 }
 
 void	think(t_philos *philos)
